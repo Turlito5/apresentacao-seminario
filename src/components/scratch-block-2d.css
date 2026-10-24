@@ -1,0 +1,6 @@
+.scratch-block-illustration { --scratch-unit: var(--slide-scale, 1); margin: calc(4px * var(--scratch-unit)) 0 0; height: calc(480px * var(--scratch-unit)); min-width: 0; display: flex; flex-direction: column; }
+.scratch-block-label { margin: calc(20px * var(--scratch-unit)) calc(10px * var(--scratch-unit)) 0 calc(37px * var(--scratch-unit)); color: #91a5be; font-size: calc(10px * var(--scratch-unit)); letter-spacing: .18em; }
+.scratch-block-stage { flex: 1; min-height: 0; display: grid; place-items: center; padding: 0 calc(16px * var(--scratch-unit)); }
+.scratch-block-graphic { display: block; width: 100%; max-width: calc(560px * var(--scratch-unit)); height: auto; }
+.scratch-block-caption { margin: 0 calc(17px * var(--scratch-unit)) calc(18px * var(--scratch-unit)) calc(37px * var(--scratch-unit)); font-size: calc(17px * var(--scratch-unit)); line-height: 1.5; color: #b0c1d6; }
+.scratch-block-caption > span { display: block; margin-top: calc(10px * var(--scratch-unit)); font-size: calc(11px * var(--scratch-unit)); color: #829ab6; }

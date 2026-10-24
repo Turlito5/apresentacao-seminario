@@ -100,7 +100,7 @@ export default function Presentation() {
   }, [index, goTo, dialog, toggleFullscreen]);
 
   // Fade direcional curto: preserva o tamanho do texto durante a troca.
-  // mode="wait" continua impedindo dois Canvas simultâneos na cena 3D.
+  // mode="wait" deixa o slide anterior sair antes de revelar o próximo.
   const slideTransition: Variants = {
     enter: (dir: number) => ({ opacity: 0, x: reducedMotion ? 0 : dir * 28 }),
     center: { opacity: 1, x: 0, transition: { duration: reducedMotion ? 0.08 : 0.44, ease: [0.22, 1, 0.36, 1] } },
@@ -127,7 +127,7 @@ export default function Presentation() {
               {/* <div className="slide-heading"><span className="slide-eyebrow"><span />{slide.chapter}</span><span className="slide-index">{String(slide.id).padStart(2, '0')}<span>/ 12</span></span></div> */}
               {/* O fundo chega mais devagar; TextReveal revela só os títulos. */}
               <div className="slide-content">
-                <SlideContent slide={slide} reducedMotion={reducedMotion} sceneReady={!animating} />
+                <SlideContent slide={slide} reducedMotion={reducedMotion} />
               </div>
               <footer className="slide-source">{slide.source}</footer>
             </motion.section>

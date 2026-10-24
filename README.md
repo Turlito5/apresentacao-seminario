@@ -2,7 +2,7 @@
 
 Apresentação acadêmica de **12 slides** sobre o artigo **Aprendendo Lógica de Programação Desenvolvendo Jogos Digitais: Um Relato de Experiência**, de Genesio e colaboradores (2023).
 
-Projeto para Análise e Desenvolvimento de Sistemas, com conteúdo resumido do artigo, notas de fala, diagramas explicativos e um bloco 3D inspirado no Scratch.
+Projeto para Análise e Desenvolvimento de Sistemas, com conteúdo resumido do artigo, notas de fala, diagramas explicativos e um bloco 2D inspirado no Scratch.
 
 ## Apresentação online
 
@@ -39,7 +39,8 @@ O build fica em `dist/`. O preview abre em http://127.0.0.1:4173. O projeto deve
 | `src/components/SlideContent.tsx` | Composição dos slides |
 | `src/components/LearningDiagrams.tsx` | Pilares e trilha das oficinas |
 | `src/components/AcademicDiagrams.tsx` | Jogos, metodologia, resultados e análise |
-| `src/components/ScratchBlock3D.tsx` | Modelo 3D, órbita automática e controles |
+| `src/components/ScratchBlock2D.tsx` | Ilustração 2D vetorial do comando Scratch |
+| `src/components/scratch-block-2d.css` | Dimensões e legenda da ilustração 2D |
 | `src/styles.css` | Tipografia e layout principal |
 | `src/components/learning-diagrams.css` | Estilos dos diagramas interativos |
 | `src/components/academic-diagrams.css` | Estilos das composições acadêmicas |
@@ -59,7 +60,7 @@ O Vite atualiza a apresentação ao salvar os arquivos. A equipe está dividida 
 - **Esc**: fechar painel.
 - Os marcadores na parte inferior também permitem escolher um slide. O contador e as setas visuais foram removidos.
 - Botão Pausar: reduzir animações.
-- Slide 2: órbita 360° em loop. Arraste para explorar ou use os botões Girar e Restaurar.
+- Slide 2: ilustração 2D do comando “mover 10 passos”.
 
 O painel de notas aparece na mesma tela da apresentação. Feche-o antes de projetar.
 
@@ -78,15 +79,15 @@ O painel de notas aparece na mesma tela da apresentação. Feche-o antes de proj
 11. Debate sobre aprendizagem individual.
 12. Referência do artigo.
 
-O estudo ocorreu na educação básica. As conexões com ADS e a leitura crítica são propostas do seminário. Os resultados são observacionais, sem percentuais inventados de aprendizagem. Os diagramas e o modelo 3D são exemplos didáticos, não registros dos jogos dos estudantes. As referências teóricas são indiretas, via artigo-base.
+O estudo ocorreu na educação básica. As conexões com ADS e a leitura crítica são propostas do seminário. Os resultados são observacionais, sem percentuais inventados de aprendizagem. Os diagramas e a ilustração 2D são exemplos didáticos, não registros dos jogos dos estudantes. As referências teóricas são indiretas, via artigo-base.
 
 Artigo: https://doi.org/10.5753/wie.2023.234515
 
 ## Tecnologias
 
-React, TypeScript, Vite, Tailwind CSS, Framer Motion, GSAP, Three.js, React Three Fiber e drei. Fontes Inter e Space Grotesk instaladas com o projeto.
+React, TypeScript, Vite, Tailwind CSS, Framer Motion e GSAP. Fontes Inter e Space Grotesk instaladas com o projeto.
 
-O layout usa dimensões CSS nativas, transições curtas de fade com deslocamento horizontal e um fundo grafite com curvas de contorno e luz difusa. O WebGL é carregado apenas no slide 2. A órbita automática respeita a redução de movimento e pausa quando a aba fica oculta. Há alternativa 2D quando WebGL está indisponível.
+O layout usa dimensões CSS nativas, transições curtas de fade com deslocamento horizontal e um fundo grafite com curvas de contorno e luz difusa. O bloco Scratch é um SVG estático, sem WebGL, órbita ou controles de rotação.
 
 ## GitHub Pages
 

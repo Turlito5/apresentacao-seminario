@@ -1,13 +1,9 @@
-import { lazy, Suspense } from 'react';
 import { ArrowDownRight, ArrowRight, BookOpen, Code2, ExternalLink, Layers3 } from 'lucide-react';
 import { article, conceptMappings, methodMetrics, team, type Point, type Slide } from '../data/slidesData';
 import TextReveal from './TextReveal';
+import ScratchBlock2D from './ScratchBlock2D';
 import { ThinkingDiagram, WorkshopTimeline } from './LearningDiagrams';
 import { AdaptationTable, GameAnatomy, MethodFlow, ResultsComparison, SynthesisColumns } from './AcademicDiagrams';
-
-// O WebGL só é baixado e instanciado no slide 2. Ao sair, Canvas e
-// OrbitControls são desmontados e deixam de consumir frames da GPU.
-const ScratchBlock3D = lazy(() => import('./ScratchBlock3D'));
 
 function Points({ points, compact = false }: { points: Point[]; compact?: boolean }) {
   return <ul className={`point-list ${compact ? 'compact' : ''}`}>
@@ -31,7 +27,7 @@ function CoverSculpture() {
   </svg>;
 }
 
-export default function SlideContent({ slide, reducedMotion, sceneReady }: { slide: Slide; reducedMotion: boolean; sceneReady: boolean }) {
+export default function SlideContent({ slide, reducedMotion }: { slide: Slide; reducedMotion: boolean }) {
   const heading = <TextReveal text={slide.title} className="slide-title" reducedMotion={reducedMotion} />;
   const subheading = slide.subtitle && <p className="slide-subtitle">{slide.subtitle}</p>;
 
@@ -61,9 +57,7 @@ export default function SlideContent({ slide, reducedMotion, sceneReady }: { sli
 
   if (slide.kind === 'problem') return <div className="problem-layout">
     <div>{heading}{subheading}<Points points={slide.points} compact /></div>
-    <Suspense fallback={<div className="scene-loading"><div className="loading-block">mover <span>10</span> passos</div><p>Preparando a cena interativa…</p></div>}>
-      <ScratchBlock3D reducedMotion={reducedMotion} active={sceneReady} />
-    </Suspense>
+    <ScratchBlock2D />
   </div>;
 
   if (slide.kind === 'objective') return <div>

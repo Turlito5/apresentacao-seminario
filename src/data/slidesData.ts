@@ -73,8 +73,8 @@ export const slidesData: readonly Slide[] = [
       { title: 'Barreiras de acesso', text: 'Escassez de recursos e necessidade de formação docente.' },
       { title: 'Ensino de Computação', text: 'Resolver problemas e criar algoritmos, além de usar aplicativos.' },
     ],
-    source: 'Genesio et al. (2023), introdução e seção 4.2. Modelo 3D didático.',
-    notes: 'Nahan: os autores situam o projeto na integração de tecnologias à educação, intensificada pelo ensino remoto em 2020. Apontam recursos insuficientes e preparação docente como barreiras à inclusão digital. Diferencie o uso de programas do ensino dos fundamentos da Computação. O artigo relaciona essa discussão à BNCC de 2018 e cita a habilidade EF06MA04, sobre algoritmos em linguagem natural e fluxogramas. Apresente isso como contextualização feita pelos autores. O projeto oferece oficinas de criação de jogos para introduzir lógica a estudantes da rede pública. O bloco 3D ilustra uma instrução produzindo uma ação, sem representar um jogo dos participantes.',
+    source: 'Genesio et al. (2023), introdução e seção 4.2. Ilustração 2D didática.',
+    notes: 'Nahan: os autores situam o projeto na integração de tecnologias à educação, intensificada pelo ensino remoto em 2020. Apontam recursos insuficientes e preparação docente como barreiras à inclusão digital. Diferencie o uso de programas do ensino dos fundamentos da Computação. O artigo relaciona essa discussão à BNCC de 2018 e cita a habilidade EF06MA04, sobre algoritmos em linguagem natural e fluxogramas. Apresente isso como contextualização feita pelos autores. O projeto oferece oficinas de criação de jogos para introduzir lógica a estudantes da rede pública. O bloco 2D ilustra uma instrução produzindo uma ação, sem representar um jogo dos participantes.',
   },
   {
     id: 3, kind: 'objective', chapter: 'Objetivo e gênero textual', menuTitle: 'Objetivo e relato de experiência',

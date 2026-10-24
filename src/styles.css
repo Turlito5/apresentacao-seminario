@@ -88,7 +88,7 @@ h1, h2, h3, p { margin: 0; }
 .team-panel tr + tr { border-top: 1px solid #ffffff0b; }
 .member-part { display: block; margin-top: calc(5px * var(--slide-scale, 1)); color: #9dadc1; font-size: calc(13px * var(--slide-scale, 1)); font-weight: 400; }
 
-/* 02 / Problema e modelo 3D */
+/* 02 / Problema e ilustração do comando */
 .problem-layout { display: grid; grid-template-columns: minmax(0, 1.04fr) minmax(0, 1fr); gap: calc(24px * var(--slide-scale, 1)); }
 .problem-layout > * { min-width: 0; }
 .problem-layout .slide-title { font-size: calc(50px * var(--slide-scale, 1)); }
@@ -101,27 +101,11 @@ h1, h2, h3, p { margin: 0; }
 .point-list.compact { margin-top: calc(23px * var(--slide-scale, 1)); }
 .compact li { padding: calc(15px * var(--slide-scale, 1)) 0; }
 .compact p { max-width: calc(400px * var(--slide-scale, 1)); }
-.scratch-scene { margin-top: calc(4px * var(--slide-scale, 1)); height: calc(480px * var(--slide-scale, 1)); position: relative; width: 100%; min-width: 0; overflow: hidden; contain: layout; }
-.scene-topline { padding: calc(20px * var(--slide-scale, 1)) calc(10px * var(--slide-scale, 1)) 0 calc(37px * var(--slide-scale, 1)); display: flex; justify-content: space-between; color: #8195af; font-size: calc(10px * var(--slide-scale, 1)); letter-spacing: .18em; }
-.scene-canvas { height: calc(350px * var(--slide-scale, 1)); position: relative; width: 100%; min-width: 0; overflow: hidden; contain: strict; margin-top: 1px; border-radius: calc(22px * var(--slide-scale, 1)); touch-action: none; }
-.webgl-viewport { position: absolute !important; inset: 0; width: 100%; height: 100%; }
-.scene-topline svg, .scene-button svg { width: calc(17px * var(--slide-scale)); height: calc(17px * var(--slide-scale)); }
 .process-mark svg { width: calc(34px * var(--slide-scale)); height: calc(34px * var(--slide-scale)); }
 .concept-panel-heading svg { width: calc(23px * var(--slide-scale)); height: calc(23px * var(--slide-scale)); }
 .bottom-insight svg, .impact-table svg { width: calc(22px * var(--slide-scale)); height: calc(22px * var(--slide-scale)); }
 .article-link svg { width: calc(20px * var(--slide-scale)); height: calc(20px * var(--slide-scale)); }
 .process-arrow { width: calc(28px * var(--slide-scale)); height: calc(28px * var(--slide-scale)); }
-.scene-canvas canvas { cursor: grab; touch-action: none; }
-.scene-canvas canvas:active { cursor: grabbing; }
-.scene-shadow { position: absolute; width: 65%; height: calc(28px * var(--slide-scale, 1)); bottom: calc(45px * var(--slide-scale, 1)); left: 18%; border-radius: 50%; background: #03081269; filter: blur(calc(16px * var(--slide-scale, 1))); }
-.scene-toolbar { padding: 0 calc(17px * var(--slide-scale, 1)) 0 calc(37px * var(--slide-scale, 1)); display: flex; align-items: center; justify-content: space-between; color: #a4b5c9; font-size: calc(13px * var(--slide-scale, 1)); }
-.scene-button { display: grid; place-items: center; width: calc(34px * var(--slide-scale, 1)); height: calc(34px * var(--slide-scale, 1)); border: 1px solid #ffffff1c; background: #ffffff03; color: #acbdd2; border-radius: 50%; }
-.scene-button:hover { background: #ffffff0b; color: #fff; }
-.scene-disclosure { display: block; margin: calc(15px * var(--slide-scale, 1)) 0 0 calc(37px * var(--slide-scale, 1)); color: #71859e; font-size: calc(11px * var(--slide-scale, 1)); }
-.scene-fallback, .scene-loading { height: calc(350px * var(--slide-scale, 1)); display: flex; flex-direction: column; align-items: center; justify-content: center; gap: calc(30px * var(--slide-scale, 1)); }
-.scene-fallback p, .scene-loading p { font-size: calc(13px * var(--slide-scale, 1)); color: #94a3b8; }
-.fallback-block, .loading-block { font-family: 'Space Grotesk', sans-serif; background: #bf814c; color: #fff9f0; font-size: calc(30px * var(--slide-scale, 1)); padding: calc(24px * var(--slide-scale, 1)) calc(30px * var(--slide-scale, 1)); border-radius: calc(16px * var(--slide-scale, 1)); box-shadow: 0 calc(12px * var(--slide-scale, 1)) 0 #835531; transform: rotate(-4deg); }
-.fallback-block span, .loading-block span { background: #f4ede5; color: #63422b; border-radius: calc(99px * var(--slide-scale, 1)); padding: calc(6px * var(--slide-scale, 1)) calc(17px * var(--slide-scale, 1)); margin: 0 calc(8px * var(--slide-scale, 1)); }
 
 /* 03–05 / Objetivo, fundamentos e método */
 .objective-row { display: grid; grid-template-columns: repeat(3, 1fr); margin-top: calc(58px * var(--slide-scale, 1)); }

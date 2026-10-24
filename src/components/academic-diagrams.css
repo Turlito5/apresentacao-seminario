@@ -1,0 +1,54 @@
+/* Estilos restritos às novas composições acadêmicas. O palco, o cabeçalho
+   editado pelo grupo e a cena WebGL mantêm seu dimensionamento existente. */
+.academic { --a: var(--slide-scale, 1); margin: calc(30px * var(--a)) 0 0; }
+.academic h3, .academic h4 { font-family: 'Space Grotesk', sans-serif; font-weight: 500; letter-spacing: -.025em; }
+.academic p { font-size: calc(19px * var(--a)); line-height: 1.5; color: #a4b6cc; }
+.academic-takeaway { margin-top: calc(30px * var(--slide-scale)); padding: calc(16px * var(--slide-scale)) 0 calc(16px * var(--slide-scale)) calc(20px * var(--slide-scale)); border-left: calc(2px * var(--slide-scale)) solid #c39973; color: #b8c9dd; font-size: calc(19px * var(--slide-scale)); line-height: 1.5; max-width: calc(1100px * var(--slide-scale)); }
+.game-anatomy-parts { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: calc(52px * var(--a)); }
+.game-part .process-mark { margin-bottom: calc(17px * var(--a)); }
+.game-part .process-mark svg { width: calc(30px * var(--a)); height: calc(30px * var(--a)); }
+.game-part h3 { font-size: calc(30px * var(--a)); margin-bottom: calc(9px * var(--a)); }
+.game-part > p { min-height: calc(58px * var(--a)); }
+.game-example { margin-top: calc(22px * var(--a)); padding-top: calc(17px * var(--a)); border-top: 1px solid #91a6c02b; }
+.game-example .micro-label { color: #c09a78; }
+.game-example p { margin-top: calc(10px * var(--a)); color: #d6e1ee; }
+.game-anatomy figcaption { font-size: calc(12px * var(--a)); color: #7e95b1; margin-top: calc(24px * var(--a)); }
+.academic-method { padding: 0; list-style: none; display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: calc(30px * var(--a)); margin-top: calc(46px * var(--a)); }
+.method-node { display: flex; align-items: center; justify-content: space-between; gap: calc(20px * var(--a)); margin-bottom: calc(25px * var(--a)); }
+.method-node span { font-family: 'Space Grotesk', sans-serif; color: #d9ad88; font-size: calc(40px * var(--a)); line-height: 1; }
+.method-node svg { color: #6e87a7; width: calc(26px * var(--a)); height: calc(26px * var(--a)); }
+.academic-method h3 { font-size: calc(26px * var(--a)); padding-top: calc(18px * var(--a)); border-top: 1px solid #a0b2cc38; }
+.academic-method p { margin-top: calc(12px * var(--a)); }
+.slide-method .academic-takeaway { margin-top: calc(45px * var(--slide-scale)); }
+.result-process { display: flex; gap: calc(65px * var(--a)); padding-bottom: calc(20px * var(--a)); border-bottom: 1px solid #93aac029; }
+.result-process > div { display: flex; align-items: center; gap: calc(12px * var(--a)); font-size: calc(17px * var(--a)); color: #adc0d7; }
+.result-process svg { width: calc(24px * var(--a)); height: calc(24px * var(--a)); color: #b5c5da; }
+.result-process .result-process-arrow { margin-left: calc(30px * var(--a)); color: #6e85a2; width: calc(20px * var(--a)); }
+.result-columns { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: calc(72px * var(--a)); margin-top: calc(22px * var(--a)); }
+.academic-column-title { font-size: calc(27px * var(--a)); line-height: 1.2; color: #d8e3f0; }
+.result-column-1 .academic-column-title { color: #d9b28f; }
+.academic ul { margin: calc(17px * var(--a)) 0 0; padding: 0; list-style: none; }
+.academic ul li { padding: calc(11px * var(--a)) 0; border-top: 1px solid #91aac01c; }
+.academic ul h4 { font-size: calc(21px * var(--a)); color: #d0dceb; line-height: 1.25; }
+.academic ul p { margin-top: calc(5px * var(--a)); font-size: calc(18px * var(--a)); }
+.adaptation-table { width: 100%; text-align: left; border-collapse: collapse; }
+.adaptation-table thead th { font-size: calc(11px * var(--a)); letter-spacing: .13em; color: #91a6c0; font-weight: 400; padding-bottom: calc(17px * var(--a)); }
+.adaptation-table tbody th, .adaptation-table tbody td { border-top: 1px solid #a3b5ce2b; padding: calc(24px * var(--a)) 0; line-height: 1.4; }
+.adaptation-table tbody th { width: 43%; font-family: 'Space Grotesk', sans-serif; font-size: calc(25px * var(--a)); color: #d2deed; font-weight: 500; }
+.adaptation-table tbody td { font-size: calc(21px * var(--a)); color: #a7bad2; }
+.adaptation-table td:nth-child(2) { width: calc(64px * var(--a)); }
+.adaptation-table svg { width: calc(23px * var(--a)); height: calc(23px * var(--a)); color: #bd9571; }
+.synthesis-columns { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: calc(44px * var(--a)); margin-top: calc(38px * var(--a)); }
+.synthesis-columns > section { border-top: 1px solid #9aaec238; padding-top: calc(20px * var(--a)); }
+.synthesis-columns .micro-label { color: #c19d7d; }
+.synthesis-columns h3 { margin-top: calc(17px * var(--a)); min-height: calc(65px * var(--a)); }
+.synthesis-columns ul { margin-top: calc(15px * var(--a)); }
+.synthesis-columns li + li { margin-top: calc(10px * var(--a)); }
+.synthesis-columns ul p { font-size: calc(19px * var(--a)); }
+/* Escopo apenas do objetivo: reservar espaço para a identificação do gênero. */
+.slide-objective .objective-row { margin-top: calc(34px * var(--slide-scale)); }
+.slide-objective .objective-step h3 { font-size: calc(28px * var(--slide-scale)); line-height: 1.2; margin-top: calc(18px * var(--slide-scale)); }
+.slide-objective .objective-step p { font-size: calc(19px * var(--slide-scale)); }
+.slide-objective .academic-takeaway { margin-top: calc(30px * var(--slide-scale)); }
+.article-sections { color: #829ab7; font-size: calc(13px * var(--slide-scale)); line-height: 1.5; margin-top: calc(17px * var(--slide-scale)); }
+.slide-discussion .discussion-title { font-size: calc(66px * var(--slide-scale)); }

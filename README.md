@@ -2,7 +2,7 @@
 
 Apresentação acadêmica de **12 slides** sobre o artigo **Aprendendo Lógica de Programação Desenvolvendo Jogos Digitais: Um Relato de Experiência**, de Genesio e colaboradores (2023).
 
-Projeto para Análise e Desenvolvimento de Sistemas, com conteúdo resumido do artigo, notas de fala, diagramas explicativos e um bloco 2D inspirado no Scratch.
+Projeto para Análise e Desenvolvimento de Sistemas, com conteúdo resumido do artigo, notas de fala, diagramas explicativos e um programa 2D em blocos no estilo do Scratch.
 
 ## Apresentação online
 
@@ -39,7 +39,7 @@ O build fica em `dist/`. O preview abre em http://127.0.0.1:4173. O projeto deve
 | `src/components/SlideContent.tsx` | Composição dos slides |
 | `src/components/LearningDiagrams.tsx` | Pilares e trilha das oficinas |
 | `src/components/AcademicDiagrams.tsx` | Jogos, metodologia, resultados e análise |
-| `src/components/ScratchBlock2D.tsx` | Ilustração 2D vetorial do comando Scratch |
+| `src/components/ScratchBlock2D.tsx` | Programa em blocos e renderização SVG com scratchblocks |
 | `src/components/scratch-block-2d.css` | Dimensões e legenda da ilustração 2D |
 | `src/styles.css` | Tipografia e layout principal |
 | `src/components/learning-diagrams.css` | Estilos dos diagramas interativos |
@@ -60,7 +60,7 @@ O Vite atualiza a apresentação ao salvar os arquivos. A equipe está dividida 
 - **Esc**: fechar painel.
 - Os marcadores na parte inferior também permitem escolher um slide. O contador e as setas visuais foram removidos.
 - Botão Pausar: reduzir animações.
-- Slide 2: ilustração 2D do comando “mover 10 passos”.
+- Slide 2: programa em Scratch com bandeira verde, posição inicial, repetição, movimento, espera e mensagem.
 
 O painel de notas aparece na mesma tela da apresentação. Feche-o antes de projetar.
 
@@ -85,9 +85,9 @@ Artigo: https://doi.org/10.5753/wie.2023.234515
 
 ## Tecnologias
 
-React, TypeScript, Vite, Tailwind CSS, Framer Motion e GSAP. Fontes Inter e Space Grotesk instaladas com o projeto.
+React, TypeScript, Vite, Tailwind CSS, Framer Motion, GSAP e [scratchblocks](https://github.com/scratchblocks/scratchblocks) (licença MIT). Fontes Inter e Space Grotesk instaladas com o projeto.
 
-O layout usa dimensões CSS nativas, transições curtas de fade com deslocamento horizontal e um fundo grafite com curvas de contorno e luz difusa. O bloco Scratch é um SVG estático, sem WebGL, órbita ou controles de rotação.
+O layout usa dimensões CSS nativas, transições curtas de fade com deslocamento horizontal e um fundo grafite com curvas de contorno e luz difusa. O programa Scratch é um SVG estático, sem WebGL, órbita ou controles de rotação. Edite `SCRATCH_PROGRAM` em `ScratchBlock2D.tsx` para mudar os comandos. O renderizador e a tradução brasileira são carregados apenas no slide 2.
 
 ## GitHub Pages
 

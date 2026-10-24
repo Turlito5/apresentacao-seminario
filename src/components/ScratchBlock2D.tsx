@@ -1,25 +1,54 @@
+import { useEffect, useRef, useState } from 'react';
 import './scratch-block-2d.css';
 
-/** Ilustração vetorial plana: texto nítido em qualquer escala, sem Canvas. */
+// Edite este texto para alterar o programa. "end" fecha o laço no parser;
+// não aparece como palavra no diagrama, apenas como o encaixe do bloco.
+export const SCRATCH_PROGRAM = `quando @greenFlag for clicado
+vá para x: (-100) y: (0)
+repita (10) vezes
+  mova (10) passos
+  espere (0.1) seg
+end
+diga [Cheguei!] por (2) segundos`;
+
+/** Scratchblocks mantém os encaixes, ícones e cores das categorias.
+ * O resultado é SVG estático; a biblioteca só é carregada neste slide. */
 export default function ScratchBlock2D() {
+  const container = useRef<HTMLDivElement>(null);
+  const [failed, setFailed] = useState(false);
+
+  useEffect(() => {
+    const host = container.current;
+    let cancelled = false;
+    const draw = async () => {
+      const [{ default: scratchblocks }, { default: portuguese }] = await Promise.all([
+        import('scratchblocks'), import('scratchblocks/locales/pt-br.json'),
+      ]);
+      await document.fonts.ready;
+      if (cancelled || !host) return;
+      scratchblocks.loadLanguages({ 'pt-br': portuguese });
+      const program = scratchblocks.parse(SCRATCH_PROGRAM, { languages: ['pt-br', 'en'] });
+      const svg = scratchblocks.render(program, { style: 'scratch3', scale: 1 });
+      svg.classList.add('scratch-block-graphic');
+      svg.setAttribute('role', 'img');
+      svg.setAttribute('aria-label', 'Programa Scratch: ao clicar na bandeira verde, definir a posição inicial; repetir dez vezes o movimento e a espera; depois dizer Cheguei por dois segundos.');
+      svg.removeAttribute('width');
+      svg.removeAttribute('height');
+      host.replaceChildren(svg);
+    };
+    void draw().catch(() => { if (!cancelled) setFailed(true); });
+    return () => { cancelled = true; host?.replaceChildren(); };
+  }, []);
+
   return <figure className="scratch-block-illustration">
-    <div className="scratch-block-label">UM COMANDO. UMA AÇÃO.</div>
+    <div className="scratch-block-label">UM PEQUENO PROGRAMA EM BLOCOS</div>
     <div className="scratch-block-stage">
-      <svg className="scratch-block-graphic" viewBox="0 0 560 280" role="img"
-        aria-label="Bloco de programação 2D inspirado no Scratch: mover 10 passos">
-        <path d="M40 80H110L124 94H162L176 80H508Q520 80 520 92V178Q520 190 508 190H176L162 204H124L110 190H40Q28 190 28 178V92Q28 80 40 80Z"
-          fill="#bc7b3e" stroke="#dcaa77" strokeWidth="1.5" />
-        <g fontFamily="Inter, sans-serif" fontSize="36" fontWeight="600" fill="#fffaf4">
-          <text x="68" y="147">mover</text>
-          <rect x="223" y="108" width="82" height="55" rx="27.5" fill="#f5e8d8" />
-          <text x="264" y="146" textAnchor="middle" fontSize="33" fill="#75461f">10</text>
-          <text x="338" y="147">passos</text>
-        </g>
-      </svg>
+      <div className="scratch-program-render" ref={container} />
+      {failed && <pre className="scratch-program-fallback">{SCRATCH_PROGRAM.replace('@greenFlag', 'bandeira verde').replace('\nend', '\nfim')}</pre>}
     </div>
     <figcaption className="scratch-block-caption">
-      Uma instrução para movimentar um personagem.
-      <span>Exemplo didático inspirado no Scratch</span>
+      Inicializar, repetir movimentos e exibir uma mensagem.
+      <span>Exemplo didático criado para o seminário</span>
     </figcaption>
   </figure>;
 }

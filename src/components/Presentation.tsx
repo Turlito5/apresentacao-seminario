@@ -1,6 +1,6 @@
 import { useCallback, useEffect, useRef, useState, type CSSProperties } from 'react';
 import { AnimatePresence, motion, useReducedMotion, type MotionProps, type Variants } from 'framer-motion';
-import { ArrowLeft, ArrowRight, Braces, Expand, Grid2X2, Minimize, NotebookPen, Pause, Play } from 'lucide-react';
+import { Braces, Expand, Grid2X2, Minimize, NotebookPen, Pause, Play } from 'lucide-react';
 import { slidesData } from '../data/slidesData';
 import { useStageScale } from '../hooks/useStageScale';
 import ParallaxBackground from './ParallaxBackground';
@@ -99,12 +99,12 @@ export default function Presentation() {
     return () => window.removeEventListener('keydown', keydown);
   }, [index, goTo, dialog, toggleFullscreen]);
 
-  // A perspectiva pertence ao palco. O slide sai com zoom-out, profundidade
-  // negativa, rotação Y e fade. mode="wait" evita dois Canvas simultâneos.
-  const cinematic: Variants = {
-    enter: (dir: number) => ({ opacity: 0, x: reducedMotion ? 0 : dir * 74, z: reducedMotion ? 0 : -160, scale: reducedMotion ? 1 : 0.94, rotateY: reducedMotion ? 0 : dir * 9 }),
-    center: { opacity: 1, x: 0, z: 0, scale: 1, rotateY: 0, transition: { duration: reducedMotion ? 0.08 : 0.62, ease: [0.22, 1, 0.36, 1] } },
-    exit: (dir: number) => ({ opacity: 0, x: reducedMotion ? 0 : -dir * 85, z: reducedMotion ? 0 : -260, scale: reducedMotion ? 1 : 0.88, rotateY: reducedMotion ? 0 : -dir * 14, transition: { duration: reducedMotion ? 0.06 : 0.36, ease: [0.55, 0, 1, 0.45] } }),
+  // Fade direcional curto: preserva o tamanho do texto durante a troca.
+  // mode="wait" continua impedindo dois Canvas simultâneos na cena 3D.
+  const slideTransition: Variants = {
+    enter: (dir: number) => ({ opacity: 0, x: reducedMotion ? 0 : dir * 28 }),
+    center: { opacity: 1, x: 0, transition: { duration: reducedMotion ? 0.08 : 0.44, ease: [0.22, 1, 0.36, 1] } },
+    exit: (dir: number) => ({ opacity: 0, x: reducedMotion ? 0 : -dir * 14, transition: { duration: reducedMotion ? 0.06 : 0.18, ease: [0.4, 0, 1, 1] } }),
   };
 
   return <div className="presentation-shell" ref={shell}>
@@ -118,22 +118,17 @@ export default function Presentation() {
       <div className="stage-measure" style={{ width: 1280 * scale, height: 720 * scale }}>
         <div className="stage" data-animating={animating} style={{ '--slide-scale': scale } as CSSProperties}>
           <AnimatePresence mode="wait" custom={direction} initial={false}>
-            <motion.section key={slide.id} className={`slide slide-${slide.kind}`} custom={direction} variants={cinematic}
+            <motion.section key={slide.id} className={`slide slide-${slide.kind}`} custom={direction} variants={slideTransition}
               initial="enter" animate="center" exit="exit" transformTemplate={crispTransform}
               aria-label={`Slide ${slide.id} de 12: ${slide.menuTitle}`}
               onAnimationComplete={definition => {
                 if (definition === 'center') { transitioning.current = false; setAnimating(false); }
               }}>
               {/* <div className="slide-heading"><span className="slide-eyebrow"><span />{slide.chapter}</span><span className="slide-index">{String(slide.id).padStart(2, '0')}<span>/ 12</span></span></div> */}
-              {/* O conteúdo avança mais e chega antes do fundo (1,25 s).
-                  As palavras têm um terceiro tempo de entrada em TextReveal. */}
-              <motion.div className="slide-content"
-                transformTemplate={crispTransform}
-                initial={{ x: reducedMotion ? 0 : direction * 32, y: reducedMotion ? 0 : 12, opacity: 0 }}
-                animate={{ x: 0, y: 0, opacity: 1 }}
-                transition={{ duration: reducedMotion ? 0.08 : 0.58, delay: reducedMotion ? 0 : 0.06, ease: [0.22, 1, 0.36, 1] }}>
+              {/* O fundo chega mais devagar; TextReveal revela só os títulos. */}
+              <div className="slide-content">
                 <SlideContent slide={slide} reducedMotion={reducedMotion} sceneReady={!animating} />
-              </motion.div>
+              </div>
               <footer className="slide-source">{slide.source}</footer>
             </motion.section>
           </AnimatePresence>
@@ -150,7 +145,6 @@ export default function Presentation() {
       <nav className="slide-progress" aria-label="Escolher slide">
         {slidesData.map((item, i) => <button key={item.id} className={`progress-step ${i === index ? 'active' : ''} ${i < index ? 'passed' : ''}`} onClick={() => goTo(i)} aria-label={`Ir para slide ${item.id}: ${item.menuTitle}`} aria-current={i === index ? 'step' : undefined} title={`${String(item.id).padStart(2, '0')} / ${item.menuTitle}`}><span /></button>)}
       </nav>
-      <div className="footer-navigation"><span className="navigation-count">{String(index + 1).padStart(2, '0')} <span>/ 12</span></span><button className="nav-button" disabled={index === 0} onClick={() => goTo(index - 1)} aria-label="Slide anterior"><ArrowLeft size={20} /></button><button className="nav-button nav-next" disabled={index === TOTAL - 1} onClick={() => goTo(index + 1)} aria-label="Próximo slide"><ArrowRight size={20} /></button></div>
     </footer>
     <p className="sr-only" role="status" aria-live="polite">Slide {index + 1} de 12: {slide.menuTitle}</p>
     {status && <div className="status-toast" role="status">{status}</div>}

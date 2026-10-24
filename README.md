@@ -57,6 +57,7 @@ O Vite atualiza a apresentação ao salvar os arquivos. A equipe está dividida 
 - **O**: visão geral.
 - **N**: notas de fala.
 - **Esc**: fechar painel.
+- Os marcadores na parte inferior também permitem escolher um slide. O contador e as setas visuais foram removidos.
 - Botão Pausar: reduzir animações.
 - Slide 2: órbita 360° em loop. Arraste para explorar ou use os botões Girar e Restaurar.
 
@@ -85,7 +86,7 @@ Artigo: https://doi.org/10.5753/wie.2023.234515
 
 React, TypeScript, Vite, Tailwind CSS, Framer Motion, GSAP, Three.js, React Three Fiber e drei. Fontes Inter e Space Grotesk instaladas com o projeto.
 
-O layout usa dimensões CSS nativas. O WebGL é carregado apenas no slide 2. A órbita automática respeita a redução de movimento e pausa quando a aba fica oculta. Há alternativa 2D quando WebGL está indisponível.
+O layout usa dimensões CSS nativas, transições curtas de fade com deslocamento horizontal e um fundo grafite com curvas de contorno e luz difusa. O WebGL é carregado apenas no slide 2. A órbita automática respeita a redução de movimento e pausa quando a aba fica oculta. Há alternativa 2D quando WebGL está indisponível.
 
 ## GitHub Pages
 

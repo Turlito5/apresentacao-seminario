@@ -17,8 +17,8 @@ export default function TextReveal({
     visible: { transition: { staggerChildren: reducedMotion ? 0 : 0.037, delayChildren: reducedMotion ? 0 : delay } },
   };
   const word: Variants = {
-    hidden: { opacity: reducedMotion ? 1 : 0, y: reducedMotion ? 0 : 17, rotateX: reducedMotion ? 0 : 16 },
-    visible: { opacity: 1, y: 0, rotateX: 0, transition: { duration: reducedMotion ? 0 : 0.48, ease: [0.22, 1, 0.36, 1] } },
+    hidden: { opacity: reducedMotion ? 1 : 0, y: reducedMotion ? 0 : 12 },
+    visible: { opacity: 1, y: 0, transition: { duration: reducedMotion ? 0 : 0.4, ease: [0.22, 1, 0.36, 1] } },
   };
   return (
     <Tag className={className}>

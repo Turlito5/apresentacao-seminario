@@ -5,11 +5,11 @@
 :root {
   font-family: 'Inter', sans-serif;
   color: #fff;
-  background: #0f172a;
+  background: #10171d;
   font-synthesis: none;
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
-  --surface: #0f172a;
+  --surface: #10171d;
   --muted: #94a3b8;
   --line: rgba(148, 163, 184, .17);
   --orange: #e6a36a;
@@ -43,7 +43,6 @@ h1, h2, h3, p { margin: 0; }
 /* Cada medida é calculada em CSS, sem ampliar uma textura do slide inteiro.
    --slide-scale vem do espaço disponível e também dimensiona as fontes. */
 .stage { width: 100%; height: 100%; position: absolute; inset: 0; perspective: none; }
-.stage[data-animating="true"] { perspective: 1800px; }
 .slide { width: 100%; height: 100%; padding: calc(36px * var(--slide-scale)) calc(56px * var(--slide-scale)) calc(26px * var(--slide-scale)); position: absolute; inset: 0; display: flex; flex-direction: column; transform-style: flat; backface-visibility: visible; font-size: calc(16px * var(--slide-scale)); }
 .slide-heading { display: flex; justify-content: space-between; align-items: center; height: calc(24px * var(--slide-scale, 1)); margin-bottom: calc(38px * var(--slide-scale, 1)); flex-shrink: 0; }
 .slide-eyebrow { display: flex; align-items: center; gap: calc(13px * var(--slide-scale, 1)); text-transform: uppercase; font-size: calc(12px * var(--slide-scale, 1)); letter-spacing: .19em; color: #aab8c9; }
@@ -58,16 +57,16 @@ h1, h2, h3, p { margin: 0; }
 .glass-panel { background: linear-gradient(135deg, rgba(255,255,255,.046), rgba(255,255,255,.012)); border: 1px solid rgba(167,184,209,.13); border-radius: calc(16px * var(--slide-scale, 1)); backdrop-filter: blur(calc(10px * var(--slide-scale, 1))); }
 .placeholder { color: #e7b88d; }
 
-/* Fundo em camadas: os wrappers recebem Framer; seus filhos, GSAP. */
+/* Grafite com luz difusa, curvas de contorno e textura leve.
+   As camadas se movem; o texto mantém a renderização nativa. */
 .parallax-background { position: absolute; inset: 0; z-index: -1; overflow: hidden; pointer-events: none; }
-.background-layer, .grid-layer, .atmosphere-layer, .geometry-layer, .background-vignette { position: absolute; inset: -70px; }
-.grid-layer { background-image: linear-gradient(#9badc70a 1px, transparent 1px), linear-gradient(90deg, #9badc70a 1px, transparent 1px); background-size: 88px 88px; mask-image: linear-gradient(135deg, transparent 10%, #000 85%); }
-.atmosphere-layer { background: radial-gradient(ellipse at 84% 38%, #293b563b, transparent 47%), radial-gradient(ellipse at 8% 90%, #192b4038, transparent 40%); }
-.geometry-square { position: absolute; width: 240px; height: 240px; border: 1px solid #a9bbd40b; transform: rotate(32deg); }
-.square-one { top: 11%; right: 10%; }
-.square-two { bottom: 9%; left: 8%; width: 120px; height: 120px; }
-.geometry-line { position: absolute; top: 49%; right: -100px; width: 780px; height: 1px; background: #a9bbd40b; transform: rotate(-33deg); }
-.background-vignette { background: linear-gradient(90deg, #0c14216b, transparent 72%); }
+.background-base, .background-grain, .background-vignette { position: absolute; inset: 0; }
+.background-base { background: linear-gradient(125deg, #10171d 4%, #142127 67%, #102027); }
+.background-layer, .atmosphere-layer, .contour-layer { position: absolute; inset: -60px; }
+.atmosphere-layer { background: radial-gradient(ellipse at 86% 9%, #8ca8a43b, transparent 48%), radial-gradient(ellipse at 16% 105%, #a98b6320, transparent 47%); }
+.contour-field { width: 100%; height: 100%; display: block; }
+.background-grain { opacity: .035; background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='180' height='180'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.75' numOctaves='3' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Cpath d='M0 0h180v180H0z' filter='url(%23n)'/%3E%3C/svg%3E"); }
+.background-vignette { background: linear-gradient(90deg, #0b111873, transparent 76%), linear-gradient(0deg, #0a111834, transparent 25%); }
 
 /* 01 / Capa */
 .cover-layout { display: grid; grid-template-columns: 1.44fr 1fr; gap: calc(44px * var(--slide-scale, 1)); height: 100%; }
@@ -209,24 +208,17 @@ h1, h2, h3, p { margin: 0; }
 .article-link:hover { color: #fff; }
 
 /* Navegação acessível. Os marcadores são botões reais, não gestos ocultos. */
-.app-footer { max-width: 1600px; padding: 25px 42px 27px; min-height: 90px; display: flex; align-items: center; justify-content: space-between; gap: 28px; }
-.footer-tools { display: flex; align-items: center; gap: 5px; }
+.app-footer { max-width: 1600px; padding: 22px 42px 26px; min-height: 84px; display: grid; grid-template-columns: minmax(0, 1fr) auto minmax(0, 1fr); align-items: center; gap: 28px; }
+.footer-tools { display: flex; align-items: center; gap: 5px; justify-self: start; }
 .tool-button { display: inline-flex; align-items: center; gap: 8px; padding: 9px 10px; border-radius: 7px; color: #94a7c0; font-size: 11px; background: transparent; border: none; white-space: nowrap; }
 .tool-button:hover { color: #fff; background: #ffffff07; }
 .motion-toggle { margin-left: 6px; }
-.slide-progress { display: flex; align-items: center; gap: 5px; }
+.slide-progress { display: flex; align-items: center; gap: 5px; grid-column: 2; justify-self: center; }
 .progress-step { padding: 17px 0; width: 25px; background: transparent; border: none; }
 .progress-step > span { display: block; height: 2px; border-radius: 10px; background: #465770; transition: background .3s, transform .3s; }
 .progress-step.passed > span { background: #8299b6; }
 .progress-step.active > span { background: var(--orange); transform: scaleY(2); }
 .progress-step:hover > span { background: #e4b78d; }
-.footer-navigation { display: flex; align-items: center; gap: 9px; }
-.navigation-count { font-family: 'Space Grotesk', sans-serif; font-size: 13px; color: #e4eaf3; margin-right: 14px; white-space: nowrap; }
-.navigation-count > span { color: #6d829f; margin-left: 4px; }
-.nav-button { display: grid; place-items: center; width: 42px; height: 42px; border-radius: 50%; border: 1px solid #6b809f55; color: #aebed4; background: transparent; transition: background .2s; }
-.nav-button:not(:disabled):hover { color: #fff; background: #ffffff0c; }
-.nav-next { background: #dce5f0; color: #18243a; border-color: #dce5f0; }
-.nav-next:not(:disabled):hover { background: #fff; color: #111d30; }
 .status-toast { position: absolute; z-index: 20; left: 50%; bottom: 105px; transform: translateX(-50%); padding: 15px 22px; background: #24334a; color: #e8eef7; font-size: 13px; border-radius: 10px; max-width: 90vw; }
 
 /* Dialog nativo: foco confinado, Escape e retorno ao controle de origem. */
@@ -256,10 +248,10 @@ h1, h2, h3, p { margin: 0; }
 
 @media (max-width: 900px) {
   .app-header { height: 74px; padding: 18px 24px; }
-  .app-footer { padding: 18px 24px 24px; gap: 15px; }
+  .app-footer { padding: 18px 24px 24px; gap: 15px; grid-template-columns: auto minmax(0, 1fr); }
   .stage-viewport { margin: 0 12px; }
   .progress-step { width: 17px; }
-  .slide-progress { gap: 4px; }
+  .slide-progress { gap: 4px; justify-self: end; }
   .tool-button { padding: 9px 7px; }
   .footer-tools { gap: 1px; }
 }
@@ -267,10 +259,9 @@ h1, h2, h3, p { margin: 0; }
   .header-edition, .brand-course, .tool-button > span { display: none; }
   .app-header { padding: 17px 19px; }
   .brand { font-size: 10px; }
-  .app-footer { flex-wrap: wrap; padding: 12px 19px 22px; row-gap: 4px; }
-  .slide-progress { order: 3; width: 100%; justify-content: space-between; }
+  .app-footer { grid-template-columns: 1fr; padding: 12px 19px 22px; row-gap: 4px; }
+  .slide-progress { grid-column: 1; justify-self: stretch; width: 100%; justify-content: space-between; }
   .progress-step { width: calc((100% - 55px) / 12); padding: 14px 0; }
-  .nav-button { width: 38px; height: 38px; }
   .overview-grid { grid-template-columns: repeat(2, 1fr); padding: 17px; }
   .dialog-heading, .notes-content { padding: 22px; }
   .notes-script { font-size: 15px; }
@@ -278,9 +269,12 @@ h1, h2, h3, p { margin: 0; }
 @media (max-height: 590px) and (orientation: landscape) {
   .presentation-shell { min-height: 320px; }
   .app-header { height: 48px; padding-top: 6px; padding-bottom: 6px; }
-  .app-footer { min-height: 58px; padding-top: 8px; padding-bottom: 8px; flex-wrap: nowrap; }
-  .slide-progress { width: auto; order: 0; }
+  .app-footer { min-height: 58px; padding-top: 8px; padding-bottom: 8px; }
   .progress-step { width: 16px; }
+}
+@media (max-height: 590px) and (min-width: 651px) and (orientation: landscape) {
+  .app-footer { grid-template-columns: auto minmax(0, 1fr); }
+  .slide-progress { grid-column: 2; justify-self: center; }
 }
 @media (prefers-reduced-motion: reduce) {
   *, *::before, *::after { scroll-behavior: auto !important; }

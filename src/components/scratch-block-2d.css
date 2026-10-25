@@ -10,7 +10,7 @@
   margin: calc(20px * var(--scratch-unit)) calc(10px * var(--scratch-unit)) 0
     calc(37px * var(--scratch-unit));
   color: #91a5be;
-  font-size: calc(10px * var(--scratch-unit));
+  font-size: calc(10px * var(--scratch-unit) * var(--slide-text-boost, 1));
   letter-spacing: 0.18em;
 }
 .scratch-block-stage {
@@ -36,20 +36,20 @@
   inset: calc(24px * var(--scratch-unit));
   margin: 0;
   color: #c6d9ed;
-  font-size: calc(16px * var(--scratch-unit));
+  font-size: calc(16px * var(--scratch-unit) * var(--slide-text-boost, 1));
   line-height: 1.7;
   white-space: pre-wrap;
 }
 .scratch-block-caption {
   margin: 0 calc(17px * var(--scratch-unit)) calc(18px * var(--scratch-unit))
     calc(37px * var(--scratch-unit));
-  font-size: calc(17px * var(--scratch-unit));
+  font-size: calc(17px * var(--scratch-unit) * var(--slide-text-boost, 1));
   line-height: 1.5;
   color: #b0c1d6;
 }
 .scratch-block-caption > span {
   display: block;
   margin-top: calc(10px * var(--scratch-unit));
-  font-size: calc(11px * var(--scratch-unit));
+  font-size: calc(11px * var(--scratch-unit) * var(--slide-text-boost, 1));
   color: #829ab6;
 }

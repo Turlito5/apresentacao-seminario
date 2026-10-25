@@ -10,12 +10,15 @@ export function GameAnatomy({ points }: { points: Point[] }) {
   return <figure className="academic game-anatomy">
     <div className="game-anatomy-parts">
       {points.map((point, i) => { const Icon = icons[i]; return <div className="game-part" key={point.title}>
-        <div className="process-mark"><Icon aria-hidden="true" /></div>
-        <h3>{point.title}</h3><p>{point.text}</p>
-        <div className="game-example"><span className="micro-label">NO EXEMPLO</span><p>{examples[i]}</p></div>
+        <div className="game-part-heading"><div className="process-mark"><Icon aria-hidden="true" /></div><h3>{point.title}</h3></div>
+        <p>{point.text}</p>
+        <section className="game-example" aria-label={`Exemplo de ${point.title.toLowerCase()}`}>
+          <span className="micro-label">NO EXEMPLO</span>
+          <p>{examples[i]}</p>
+        </section>
       </div>; })}
     </div>
-    <figcaption>Exemplo didático: um jogo de coleta. Os três componentes atuam em conjunto.</figcaption>
+    <figcaption><strong>Exemplo didático: um jogo de coleta</strong><span>Os três componentes atuam em conjunto.</span></figcaption>
   </figure>;
 }
 

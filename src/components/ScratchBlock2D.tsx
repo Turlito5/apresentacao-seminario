@@ -4,10 +4,8 @@ import './scratch-block-2d.css';
 // Edite este texto para alterar o programa. "end" fecha o laço no parser;
 // não aparece como palavra no diagrama, apenas como o encaixe do bloco.
 export const SCRATCH_PROGRAM = `quando @greenFlag for clicado
-vá para x: (-100) y: (0)
 repita (10) vezes
   mova (10) passos
-  espere (0.1) seg
 end
 diga [Cheguei!] por (2) segundos`;
 
@@ -31,7 +29,7 @@ export default function ScratchBlock2D() {
       const svg = scratchblocks.render(program, { style: 'scratch3', scale: 1 });
       svg.classList.add('scratch-block-graphic');
       svg.setAttribute('role', 'img');
-      svg.setAttribute('aria-label', 'Programa Scratch: ao clicar na bandeira verde, definir a posição inicial; repetir dez vezes o movimento e a espera; depois dizer Cheguei por dois segundos.');
+      svg.setAttribute('aria-label', 'Programa Scratch: ao clicar na bandeira verde, repetir dez vezes o movimento; depois dizer Cheguei por dois segundos.');
       svg.removeAttribute('width');
       svg.removeAttribute('height');
       host.replaceChildren(svg);
@@ -41,13 +39,13 @@ export default function ScratchBlock2D() {
   }, []);
 
   return <figure className="scratch-block-illustration">
-    <div className="scratch-block-label">UM PEQUENO PROGRAMA EM BLOCOS</div>
+    {/* <div className="scratch-block-label">UM PEQUENO PROGRAMA EM BLOCOS</div> */}
     <div className="scratch-block-stage">
       <div className="scratch-program-render" ref={container} />
       {failed && <pre className="scratch-program-fallback">{SCRATCH_PROGRAM.replace('@greenFlag', 'bandeira verde').replace('\nend', '\nfim')}</pre>}
     </div>
     <figcaption className="scratch-block-caption">
-      Inicializar, repetir movimentos e exibir uma mensagem.
+      <p>Iniciar, repetir movimentos e exibir uma mensagem.</p>
       <span>Exemplo didático criado para o seminário</span>
     </figcaption>
   </figure>;

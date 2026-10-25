@@ -1,0 +1,81 @@
+/* Ajustes de conteúdo: preservar o palco e os estilos editados pelo grupo.
+   Os tópicos continuam curtos; as explicações completas ficam nas notas. */
+.slide-problem .compact li {
+  padding: calc(12px * var(--slide-scale)) 0;
+}
+
+.slide-objective .objective-row-expanded {
+  column-gap: calc(24px * var(--slide-scale));
+  row-gap: calc(26px * var(--slide-scale));
+  margin-top: calc(28px * var(--slide-scale));
+}
+.slide-objective .objective-row-expanded .objective-step {
+  padding: 0 calc(18px * var(--slide-scale));
+}
+.slide-objective .objective-row-expanded .objective-step:nth-child(3n + 1) {
+  padding-left: 0;
+  border-left: 0;
+}
+.slide-objective .objective-row-expanded h3 {
+  font-size: calc(24px * var(--slide-scale) * var(--slide-text-boost, 1));
+  margin-top: calc(9px * var(--slide-scale));
+}
+.slide-objective .objective-row-expanded p {
+  font-size: calc(18px * var(--slide-scale) * var(--slide-text-boost, 1));
+  line-height: 1.4;
+  margin-top: calc(7px * var(--slide-scale));
+}
+
+/* Seis relações curtas entre condição e resposta, sem reduzir as fontes. */
+.slide-lessons .adaptation-table tbody th,
+.slide-lessons .adaptation-table tbody td {
+  padding: calc(14px * var(--slide-scale)) 0;
+}
+
+.slide-conclusion .conclusion-grid {
+  margin-top: calc(28px * var(--slide-scale));
+  row-gap: calc(22px * var(--slide-scale));
+}
+.slide-conclusion .conclusion-grid > div {
+  padding-top: calc(16px * var(--slide-scale));
+}
+.slide-conclusion .bottom-insight {
+  font-size: calc(17px * var(--slide-scale) * var(--slide-text-boost, 1));
+  line-height: 1.4;
+  margin-top: calc(26px * var(--slide-scale));
+}
+
+/* Duas sínteses do grupo dão contexto à pergunta, sem ocupar outro slide. */
+.slide-discussion .discussion-title {
+  font-size: calc(60px * var(--slide-scale) * var(--slide-text-boost, 1));
+}
+.slide-discussion .discussion-question {
+  margin-top: calc(22px * var(--slide-scale));
+}
+.slide-discussion .discussion-example {
+  margin-top: calc(12px * var(--slide-scale));
+}
+.discussion-context {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: calc(48px * var(--slide-scale));
+  list-style: none;
+  padding: 0;
+  margin: calc(27px * var(--slide-scale)) 0 0;
+}
+.discussion-context li {
+  border-top: 1px solid var(--line);
+  padding-top: calc(15px * var(--slide-scale));
+}
+.discussion-context h3 {
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: calc(21px * var(--slide-scale) * var(--slide-text-boost, 1));
+  font-weight: 500;
+  color: #d3b18d;
+}
+.discussion-context p {
+  font-size: calc(18px * var(--slide-scale) * var(--slide-text-boost, 1));
+  line-height: 1.4;
+  color: #a7b5c8;
+  margin-top: calc(7px * var(--slide-scale));
+}

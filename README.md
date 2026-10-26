@@ -37,11 +37,12 @@ O build fica em `dist/`. O preview abre em http://127.0.0.1:4173. O projeto deve
 | `src/data/slidesData.ts` | Textos, notas, referências, equipe e dados do artigo |
 | `src/components/Presentation.tsx` | Navegação e transições |
 | `src/components/SlideContent.tsx` | Composição dos slides |
-| `src/components/LearningDiagrams.tsx` | Pilares interativos e lista numerada das oficinas |
+| `src/components/ExpandedArticleContent.tsx` | Contexto da introdução, definições de PC, jogos, oficinas detalhadas, sequência das atividades e lições da seção 5 |
 | `src/components/AcademicDiagrams.tsx` | Jogos, metodologia, resultados e análise |
-| `src/data/articleCoverage.ts` | Comparativo da seção 2.3 e atividade sugerida ao grupo |
+| `src/data/articleCoverage.ts` | Comparativo da seção 2.3, dez conteúdos detalhados das oficinas e atividade sugerida ao grupo |
 | `src/components/ArticleDetails.tsx` | Trabalhos relacionados, exemplos e materiais de apoio |
 | `src/components/article-content.css` | Composições do conteúdo completo, tabela da seção 2.3, espaçamento e divisórias |
+| `src/components/expanded-article-content.css` | Distribuição e legibilidade dos slides 2, 3, 4, 7, 8 e 9 |
 | `src/components/ScratchBlock2D.tsx` | Programa em blocos e renderização SVG com scratchblocks |
 | `src/components/scratch-block-2d.css` | Dimensões e legenda da ilustração 2D |
 | `src/styles.css` | Tipografia e layout principal |
@@ -55,7 +56,7 @@ O Vite atualiza a apresentação ao salvar os arquivos. A equipe está dividida 
 ## Controles
 
 - **← / →**, Page Up/Page Down: trocar slides.
-- **↑ / ↓** no slide 3: alternar o pilar selecionado, sem clicar antes.
+- **↑ / ↓** no slide 3: alternar o pilar destacado, sem clicar antes. As quatro definições continuam visíveis.
 - **Home / End**: primeiro/último slide.
 - **F**: tela cheia.
 - **O**: visão geral.
@@ -70,21 +71,21 @@ O painel de notas aparece na mesma tela da apresentação. Feche-o antes de proj
 ## Estrutura acadêmica
 
 1. Artigo e equipe.
-2. Introdução: inclusão digital, problema, objetivo e gênero do artigo.
-3. Pensamento computacional — seção 2.1.
-4. Jogos digitais e aprendizagem — seção 2.2.
+2. Introdução: obstáculos à inclusão digital, Computação na escola, PC para todos, programação e pensamento, BNCC, projeto e objetivo do artigo.
+3. Abertura da seção 2, definições de Wing e Brackmann e os quatro pilares — seção 2.1.
+4. Componentes dos jogos, interesse, criatividade, jogos epistêmicos e experimentação — seção 2.2.
 5. Três trabalhos relacionados — seção 2.3.
 6. Metodologia e materiais — seções 3 e 4.1.
-7. Participantes e dez oficinas.
-8. Avanços e dificuldades.
-9. Adaptações e lições aprendidas.
+7. Participantes, instrutores, ambiente, materiais de apoio e conteúdos das dez oficinas.
+8. Conteúdo teórico → conteúdo prático → criação dos jogos → absorção dos conceitos, separando atividades e observações dos autores — seções 4.3.1 a 4.5.
+9. Lições aprendidas, na ordem da seção 5: contexto, perguntas, liberdade orientada, infraestrutura, Scratch para iniciantes e conexão teoria/prática.
 10. Considerações finais dos autores — seção 6.
 11. Leitura crítica, relação com ADS e debate sobre aprendizagem individual.
 12. Referência do artigo.
 
-O estudo ocorreu na educação básica. As conexões com ADS e a leitura crítica são propostas do seminário. Os resultados são observacionais, sem percentuais inventados de aprendizagem. Os diagramas e a ilustração 2D são exemplos didáticos, não registros dos jogos dos estudantes. As referências teóricas são indiretas, via artigo-base.
+O estudo ocorreu na educação básica. As conexões com ADS e a leitura crítica são propostas do seminário. Os resultados são observacionais, sem percentuais inventados de aprendizagem. A ilustração Scratch 2D é um exemplo didático, não um registro dos jogos dos estudantes. As referências teóricas são indiretas, via artigo-base.
 
-O mapa dos recortes está em [COBERTURA-DO-ARTIGO.md](COBERTURA-DO-ARTIGO.md). A base visual é a versão do GitHub, com as fontes ampliadas de forma discreta: 8% nos slides e 4% no slide 7. O fator `--slide-text-boost` em `src/styles.css` controla esse aumento. O conteúdo integral da versão anterior foi recuperado, incluindo a seção 2.3, as dez oficinas e as seis considerações finais. A apresentação mantém o formato 16:9 e adapta todas as medidas ao espaço disponível. Use **F** para apresentar em tela cheia.
+O mapa dos recortes está em [COBERTURA-DO-ARTIGO.md](COBERTURA-DO-ARTIGO.md). A base visual é a versão do GitHub, com as fontes ampliadas de forma discreta: 8% nos slides e 4% no slide 7. O fator `--slide-text-boost` em `src/styles.css` controla esse aumento. A revisão amplia os trechos visíveis dos slides 2, 3, 4, 7, 8 e 9; os demais mantêm o conteúdo anterior, incluindo os trabalhos relacionados e as seis considerações finais. Os exemplos detalhados de coleta e condição deram lugar aos argumentos e às etapas do artigo. O slide 9 acompanha as lições pedagógicas e estruturais da seção 5. A apresentação mantém o formato 16:9 e adapta todas as medidas ao espaço disponível. Use **F** para apresentar em tela cheia.
 
 Artigo: https://doi.org/10.5753/wie.2023.234515
 

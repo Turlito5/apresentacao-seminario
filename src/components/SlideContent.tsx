@@ -9,29 +9,30 @@ import {
 import {
   article,
   conceptMappings,
-  methodMetrics,
   team,
   type Point,
   type Slide,
 } from "../data/slidesData";
 import TextReveal from "./TextReveal";
-import ScratchBlock2D from "./ScratchBlock2D";
-import { ThinkingDiagram, WorkshopTopics } from "./LearningDiagrams";
 import {
-  AdaptationTable,
-  GameAnatomy,
   MethodFlow,
-  ResultsComparison,
   SynthesisColumns,
 } from "./AcademicDiagrams";
 import {
   DiscussionActivity,
-  GamesContext,
-  LogicExample,
   MaterialsSupport,
   RelatedStudiesTable,
 } from "./ArticleDetails";
 import "./article-content.css";
+import {
+  ComputationalFoundation,
+  ExperienceSequence,
+  GamesLearningContent,
+  IntroductionContext,
+  LessonsLearned,
+  WorkshopCoverage,
+} from "./ExpandedArticleContent";
+import "./expanded-article-content.css";
 
 function Points({
   points,
@@ -178,18 +179,10 @@ export default function SlideContent({
 
   if (slide.kind === "problem")
     return (
-      <div className="problem-layout intro-layout">
-        <div className="intro-copy">
-          {heading}
-          {subheading}
-          <Points points={slide.points} compact />
-          <div className="article-objective">
-            <h3>Objetivo do artigo</h3>
-            <p>{slide.takeaway}</p>
-          </div>
-          <p className="genre-note">Gênero: relato de experiência.</p>
-        </div>
-        <ScratchBlock2D />
+      <div>
+        {heading}
+        {subheading}
+        <IntroductionContext slide={slide} />
       </div>
     );
 
@@ -222,7 +215,7 @@ export default function SlideContent({
       <div>
         {heading}
         {subheading}
-        <ThinkingDiagram points={slide.points} reducedMotion={reducedMotion} />
+        <ComputationalFoundation slide={slide} />
       </div>
     );
 
@@ -241,8 +234,7 @@ export default function SlideContent({
       <div>
         {heading}
         {subheading}
-        <GameAnatomy points={slide.points} />
-        <GamesContext />
+        <GamesLearningContent slide={slide} />
       </div>
     );
 
@@ -261,11 +253,7 @@ export default function SlideContent({
       <div>
         {heading}
         {subheading}
-        <WorkshopTopics
-          points={slide.points}
-          metrics={methodMetrics}
-          reducedMotion={reducedMotion}
-        />
+        <WorkshopCoverage slide={slide} />
       </div>
     );
 
@@ -274,8 +262,7 @@ export default function SlideContent({
       <div>
         {heading}
         {subheading}
-        <ResultsComparison columns={slide.columns ?? []} />
-        <LogicExample />
+        <ExperienceSequence stages={slide.stages ?? []} />
       </div>
     );
 
@@ -284,10 +271,7 @@ export default function SlideContent({
       <div>
         {heading}
         {subheading}
-        <AdaptationTable points={slide.points} />
-        {slide.takeaway && (
-          <p className="academic-takeaway">{slide.takeaway}</p>
-        )}
+        <LessonsLearned points={slide.points} />
       </div>
     );
 

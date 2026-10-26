@@ -11,7 +11,7 @@ diga [Cheguei!] por (2) segundos`;
 
 /** Scratchblocks mantém os encaixes, ícones e cores das categorias.
  * O resultado é SVG estático; a biblioteca só é carregada neste slide. */
-export default function ScratchBlock2D() {
+export default function ScratchBlock2D({ compact = false }: { compact?: boolean }) {
   const container = useRef<HTMLDivElement>(null);
   const [failed, setFailed] = useState(false);
 
@@ -38,15 +38,17 @@ export default function ScratchBlock2D() {
     return () => { cancelled = true; host?.replaceChildren(); };
   }, []);
 
-  return <figure className="scratch-block-illustration">
+  return <figure className={`scratch-block-illustration${compact ? ' is-compact' : ''}`}>
     {/* <div className="scratch-block-label">UM PEQUENO PROGRAMA EM BLOCOS</div> */}
     <div className="scratch-block-stage">
       <div className="scratch-program-render" ref={container} />
       {failed && <pre className="scratch-program-fallback">{SCRATCH_PROGRAM.replace('@greenFlag', 'bandeira verde').replace('\nend', '\nfim')}</pre>}
     </div>
     <figcaption className="scratch-block-caption">
-      <p>Iniciar, repetir movimentos e exibir uma mensagem.</p>
-      <span>Exemplo didático criado para o seminário</span>
+      {compact ? <p>Exemplo didático em Scratch</p> : <>
+        <p>Iniciar, repetir movimentos e exibir uma mensagem.</p>
+        <span>Exemplo didático criado para o seminário</span>
+      </>}
     </figcaption>
   </figure>;
 }

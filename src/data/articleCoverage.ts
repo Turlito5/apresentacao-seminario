@@ -23,3 +23,17 @@ export const discussionTasks = [
   { title: 'Modificar', text: 'Cada aluno altera uma condição.' },
   { title: 'Testar', text: 'Verificar o efeito sem ajuda do colega.' },
 ] as const;
+
+// Detalhes do Quadro 3, mantidos na ordem das dez oficinas.
+export const detailedWorkshopTopics = [
+  { title: 'Computador', detail: 'Componentes, comandos básicos e Internet.' },
+  { title: 'Sobre o projeto', detail: 'Questionário prévio e exemplos no Scratch.' },
+  { title: 'Roteiro de jogos', detail: 'Enredo, plano cartesiano e criação do roteiro.' },
+  { title: 'Escrita do roteiro', detail: 'Personagens, interações, início e desfecho.' },
+  { title: 'Lógica de programação', detail: 'Conceitos básicos para programar no Scratch.' },
+  { title: 'Ferramenta Scratch', detail: 'Blocos, sprites e upload de cenários.' },
+  { title: 'Programação no Scratch', detail: 'Sequências, condições, variáveis, eventos e AND/OR/NOT.' },
+  { title: 'Loops e conectivos', detail: 'Sempre e repita; ações e obstáculos.' },
+  { title: 'Sons — oficina adaptada', detail: 'Sons, voz e interação; adaptação por falta de caixas.' },
+  { title: 'Prática acompanhada', detail: 'Suporte e verificação das dificuldades.' },
+] as const;

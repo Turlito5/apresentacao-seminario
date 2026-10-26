@@ -22,19 +22,56 @@ jobs:
       name: github-pages
       url: ${{ steps.deployment.outputs.page_url }}
     steps:
-      - name: Obter o código
+      - name: Obter o código principal
         uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7
+      - name: Obter a versão com controles
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7
+        with:
+          ref: codex/com-controles
+          path: .versions/com-controles
+          persist-credentials: false
+      - name: Obter a versão sem controles
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7
+        with:
+          ref: codex/sem-controles
+          path: .versions/sem-controles
+          persist-credentials: false
       - name: Configurar Node.js
         uses: actions/setup-node@820762786026740c76f36085b0efc47a31fe5020 # v7
         with:
           node-version: '22'
           cache: npm
+          cache-dependency-path: |
+            package-lock.json
+            .versions/com-controles/package-lock.json
+            .versions/sem-controles/package-lock.json
       - name: Instalar dependências
         run: npm ci
-      - name: Verificar TypeScript e gerar o site
+      - name: Verificar TypeScript e gerar o site principal
         run: npm run build
         env:
           BASE_PATH: /${{ github.event.repository.name }}/
+      - name: Gerar a versão com controles
+        working-directory: .versions/com-controles
+        run: |
+          npm ci
+          npm run build
+        env:
+          BASE_PATH: /${{ github.event.repository.name }}/com-controles/
+      - name: Gerar a versão sem controles
+        working-directory: .versions/sem-controles
+        run: |
+          npm ci
+          npm run build
+        env:
+          BASE_PATH: /${{ github.event.repository.name }}/sem-controles/
+      # Um único artefato contém as duas versões e o endereço principal.
+      # Publicar uma branch isoladamente apagaria a outra versão do site.
+      - name: Reunir as versões no mesmo site
+        run: |
+          mkdir -p dist/com-controles dist/sem-controles
+          cp -R .versions/com-controles/dist/. dist/com-controles/
+          cp -R .versions/sem-controles/dist/. dist/sem-controles/
       - name: Configurar GitHub Pages
         uses: actions/configure-pages@45bfe0192ca1faeb007ade9deae92b16b8254a0d # v6
       - name: Enviar arquivos do site

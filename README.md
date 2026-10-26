@@ -8,7 +8,13 @@ Projeto para Análise e Desenvolvimento de Sistemas, com conteúdo resumido do a
 
 Endereço do GitHub Pages: https://turlito5.github.io/apresentacao-seminario/
 
-A publicação usa GitHub Actions. Cada atualização enviada à branch `main` instala as dependências, verifica o TypeScript, gera o site e publica a pasta `dist`.
+| Versão | Código | Endereço |
+| --- | --- | --- |
+| Principal, sem controles | `main` | https://turlito5.github.io/apresentacao-seminario/ |
+| Com botões, progresso e rótulo do seminário | `codex/com-controles` | https://turlito5.github.io/apresentacao-seminario/com-controles/ |
+| Sem controles visíveis | `codex/sem-controles` | https://turlito5.github.io/apresentacao-seminario/sem-controles/ |
+
+A publicação usa GitHub Actions. Cada atualização enviada à branch `main` verifica e gera a versão principal e as duas branches. Os três resultados são reunidos em uma única pasta `dist` e publicados juntos. Assim, os colegas podem acessar qualquer versão sem trocar o conteúdo do endereço principal.
 
 ## Rodar localmente
 
@@ -109,3 +115,5 @@ git add .
 git commit -m "Atualiza apresentação"
 git push origin main
 ```
+
+As branches `codex/com-controles` e `codex/sem-controles` guardam versões independentes. Alterações nelas entram na próxima publicação disparada por um push na `main`, ou ao executar manualmente **Publicar apresentação no GitHub Pages → Run workflow**, escolhendo a `main`. O workflow busca o conteúdo mais recente das duas branches e gera os arquivos com os caminhos corretos de cada subpasta.

@@ -1,6 +1,6 @@
 import { useCallback, useEffect, useRef, useState, type CSSProperties } from 'react';
 import { AnimatePresence, motion, useReducedMotion, type MotionProps, type Variants } from 'framer-motion';
-import { Braces, Expand, Grid2X2, Minimize, NotebookPen, Pause, Play } from 'lucide-react';
+import { Braces, Expand, Minimize } from 'lucide-react';
 import { slidesData } from '../data/slidesData';
 import { useStageScale } from '../hooks/useStageScale';
 import ParallaxBackground from './ParallaxBackground';
@@ -29,11 +29,9 @@ export default function Presentation() {
   const [direction, setDirection] = useState(1);
   const [animating, setAnimating] = useState(false);
   const [dialog, setDialog] = useState<DialogMode>(null);
-  const [paused, setPaused] = useState(false);
   const [fullscreen, setFullscreen] = useState(false);
   const [status, setStatus] = useState('');
-  const systemReducedMotion = useReducedMotion();
-  const reducedMotion = Boolean(systemReducedMotion || paused);
+  const reducedMotion = Boolean(useReducedMotion());
   const viewport = useRef<HTMLDivElement>(null);
   const shell = useRef<HTMLDivElement>(null);
   const transitioning = useRef(false);
@@ -111,7 +109,7 @@ export default function Presentation() {
     <ParallaxBackground index={index} reducedMotion={reducedMotion} />
     <header className="app-header">
       <a className="brand" href="#slide-1" onClick={event => { event.preventDefault(); goTo(0); }} aria-label="Ir para a capa"><span className="brand-icon"><Braces size={20} /></span><span>LÓGICA EM JOGO<span className="brand-course">ANÁLISE E DESENVOLVIMENTO DE SISTEMAS</span></span></a>
-      <div className="header-right"><span className="header-edition">SEMINÁRIO ACADÊMICO <span>/</span> 2026</span><button className="icon-button" onClick={() => void toggleFullscreen()} aria-label={fullscreen ? 'Sair da tela cheia' : 'Tela cheia'} title="Tela cheia (F)">{fullscreen ? <Minimize size={18} /> : <Expand size={18} />}</button></div>
+      <div className="header-right"><button className="icon-button" onClick={() => void toggleFullscreen()} aria-label={fullscreen ? 'Sair da tela cheia' : 'Tela cheia'} title="Tela cheia (F)">{fullscreen ? <Minimize size={18} /> : <Expand size={18} />}</button></div>
     </header>
 
     <main ref={viewport} className="stage-viewport" aria-label="Apresentação acadêmica">
@@ -136,16 +134,6 @@ export default function Presentation() {
       </div>
     </main>
 
-    <footer className="app-footer">
-      <div className="footer-tools">
-        <button className="tool-button" onClick={() => setDialog('overview')} title="Todos os slides (O)"><Grid2X2 size={17} /><span>Slides</span></button>
-        <button className="tool-button" onClick={() => setDialog('notes')} title="Notas de fala (N)"><NotebookPen size={17} /><span>Notas</span></button>
-        <button className="tool-button motion-toggle" onClick={() => setPaused(value => !value)} aria-pressed={reducedMotion} aria-label={reducedMotion ? 'Animações reduzidas' : 'Reduzir animações'} title={systemReducedMotion ? 'Movimento reduzido conforme preferência do sistema' : paused ? 'Retomar animações' : 'Reduzir animações'}>{reducedMotion ? <Play size={16} /> : <Pause size={16} />}</button>
-      </div>
-      <nav className="slide-progress" aria-label="Escolher slide">
-        {slidesData.map((item, i) => <button key={item.id} className={`progress-step ${i === index ? 'active' : ''} ${i < index ? 'passed' : ''}`} onClick={() => goTo(i)} aria-label={`Ir para slide ${item.id}: ${item.menuTitle}`} aria-current={i === index ? 'step' : undefined} title={`${String(item.id).padStart(2, '0')} / ${item.menuTitle}`}><span /></button>)}
-      </nav>
-    </footer>
     <p className="sr-only" role="status" aria-live="polite">Slide {index + 1} de 12: {slide.menuTitle}</p>
     {status && <div className="status-toast" role="status">{status}</div>}
     <PresentationDialog mode={dialog} current={index} onClose={() => setDialog(null)} onSelect={goTo} />

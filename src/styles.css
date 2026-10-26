@@ -30,14 +30,12 @@ h1, h2, h3, p { margin: 0; }
 /* Chrome da apresentação, sempre fora da composição 16:9. */
 .presentation-shell { position: relative; isolation: isolate; height: 100dvh; min-height: 480px; display: flex; flex-direction: column; overflow: hidden; background: var(--surface); }
 .presentation-shell:fullscreen { height: 100dvh; }
-.app-header, .app-footer { z-index: 2; width: 100%; margin: 0 auto; flex-shrink: 0; }
+.app-header { z-index: 2; width: 100%; margin: 0 auto; flex-shrink: 0; }
 .app-header { height: 88px; max-width: 1690px; padding: 24px 42px; display: flex; align-items: center; justify-content: space-between; }
 .brand { display: flex; align-items: center; gap: 13px; text-decoration: none; font-family: 'Space Grotesk', sans-serif; font-weight: 700; letter-spacing: .13em; font-size: 12px; }
 .brand-icon { width: 36px; height: 36px; display: grid; place-items: center; border: 1px solid #48566a; border-radius: 10px; color: #d1dbe8; background: #ffffff03; }
 .brand-course { display: block; font-family: 'Inter', sans-serif; font-size: 8px; font-weight: 400; color: #8c9cb2; margin-top: 5px; letter-spacing: .11em; }
 .header-right { display: flex; align-items: center; gap: 26px; }
-.header-edition { font-size: 9px; color: #a0aec0; letter-spacing: .14em; }
-.header-edition span { color: #52617a; margin: 0 10px; }
 .icon-button { width: 36px; height: 36px; display: grid; place-items: center; color: #a8b6ca; border: 1px solid transparent; border-radius: 8px; background: transparent; transition: background .2s, color .2s; }
 .icon-button:hover { background: #ffffff08; color: #fff; }
 .stage-viewport { position: relative; z-index: 1; flex: 1; min-height: 0; margin: 0 30px; display: flex; align-items: center; justify-content: center; }
@@ -196,18 +194,6 @@ h1, h2, h3, p { margin: 0; }
 .article-link { margin-top: calc(28px * var(--slide-scale, 1)); display: inline-flex; align-items: center; gap: calc(12px * var(--slide-scale, 1)); color: #b6c8df; font-size: calc(16px * var(--slide-scale, 1) * var(--slide-text-boost, 1)); text-decoration: none; }
 .article-link:hover { color: #fff; }
 
-/* Navegação acessível. Os marcadores são botões reais, não gestos ocultos. */
-.app-footer { max-width: 1600px; padding: 22px 42px 26px; min-height: 84px; display: grid; grid-template-columns: minmax(0, 1fr) auto minmax(0, 1fr); align-items: center; gap: 28px; }
-.footer-tools { display: flex; align-items: center; gap: 5px; justify-self: start; }
-.tool-button { display: inline-flex; align-items: center; gap: 8px; padding: 9px 10px; border-radius: 7px; color: #94a7c0; font-size: 11px; background: transparent; border: none; white-space: nowrap; }
-.tool-button:hover { color: #fff; background: #ffffff07; }
-.motion-toggle { margin-left: 6px; }
-.slide-progress { display: flex; align-items: center; gap: 5px; grid-column: 2; justify-self: center; }
-.progress-step { padding: 17px 0; width: 25px; background: transparent; border: none; }
-.progress-step > span { display: block; height: 2px; border-radius: 10px; background: #465770; transition: background .3s, transform .3s; }
-.progress-step.passed > span { background: #8299b6; }
-.progress-step.active > span { background: var(--orange); transform: scaleY(2); }
-.progress-step:hover > span { background: #e4b78d; }
 .status-toast { position: absolute; z-index: 20; left: 50%; bottom: 105px; transform: translateX(-50%); padding: 15px 22px; background: #24334a; color: #e8eef7; font-size: 13px; border-radius: 10px; max-width: 90vw; }
 
 /* Dialog nativo: foco confinado, Escape e retorno ao controle de origem. */
@@ -237,20 +223,12 @@ h1, h2, h3, p { margin: 0; }
 
 @media (max-width: 900px) {
   .app-header { height: 74px; padding: 18px 24px; }
-  .app-footer { padding: 18px 24px 24px; gap: 15px; grid-template-columns: auto minmax(0, 1fr); }
   .stage-viewport { margin: 0 12px; }
-  .progress-step { width: 17px; }
-  .slide-progress { gap: 4px; justify-self: end; }
-  .tool-button { padding: 9px 7px; }
-  .footer-tools { gap: 1px; }
 }
 @media (max-width: 650px) {
-  .header-edition, .brand-course, .tool-button > span { display: none; }
+  .brand-course { display: none; }
   .app-header { padding: 17px 19px; }
   .brand { font-size: 10px; }
-  .app-footer { grid-template-columns: 1fr; padding: 12px 19px 22px; row-gap: 4px; }
-  .slide-progress { grid-column: 1; justify-self: stretch; width: 100%; justify-content: space-between; }
-  .progress-step { width: calc((100% - 55px) / 12); padding: 14px 0; }
   .overview-grid { grid-template-columns: repeat(2, 1fr); padding: 17px; }
   .dialog-heading, .notes-content { padding: 22px; }
   .notes-script { font-size: 15px; }
@@ -258,14 +236,8 @@ h1, h2, h3, p { margin: 0; }
 @media (max-height: 590px) and (orientation: landscape) {
   .presentation-shell { min-height: 320px; }
   .app-header { height: 48px; padding-top: 6px; padding-bottom: 6px; }
-  .app-footer { min-height: 58px; padding-top: 8px; padding-bottom: 8px; }
-  .progress-step { width: 16px; }
-}
-@media (max-height: 590px) and (min-width: 651px) and (orientation: landscape) {
-  .app-footer { grid-template-columns: auto minmax(0, 1fr); }
-  .slide-progress { grid-column: 2; justify-self: center; }
 }
 @media (prefers-reduced-motion: reduce) {
   *, *::before, *::after { scroll-behavior: auto !important; }
-  button, .progress-step > span { transition: none !important; }
+  button { transition: none !important; }
 }

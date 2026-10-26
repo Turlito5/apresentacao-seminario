@@ -63,8 +63,8 @@ O Vite atualiza a apresentação ao salvar os arquivos. A equipe está dividida 
 - **O**: visão geral.
 - **N**: notas de fala.
 - **Esc**: fechar painel.
-- Os marcadores na parte inferior também permitem escolher um slide. O contador e as setas visuais foram removidos.
-- Botão Pausar: reduzir animações.
+- O rótulo de edição no cabeçalho, os controles inferiores e a barra de progresso foram removidos. Os atalhos continuam ativos.
+- A preferência de movimento reduzido do sistema operacional continua respeitada.
 - Slide 2: programa em Scratch com bandeira verde, repetição, movimento e mensagem; exemplo compacto para manter os comandos legíveis.
 
 O painel de notas aparece na mesma tela da apresentação. Feche-o antes de projetar.

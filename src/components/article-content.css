@@ -534,7 +534,23 @@
   margin-top: calc(28px * var(--p));
 }
 
-/* 11 / A pergunta ganha ênfase; análise e atividade ficam em faixas próprias. */
+/* 11 / Crítica equilibrada: contribuição social/pedagógica e limites do método. */
+.slide-critique .slide-title { font-size: calc(42px * var(--text-unit)); }
+.critical-review { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: calc(54px * var(--p)); margin-top: calc(28px * var(--p)); }
+.critical-review > section { min-width: 0; border-top: calc(2px * var(--p)) solid #91aac047; padding-top: calc(18px * var(--p)); }
+.critical-review > .critical-limit { border-top-color: #bd98746b; }
+.critical-review h3 { font-family: 'Space Grotesk', sans-serif; font-size: calc(24px * var(--text-unit)); font-weight: 500; line-height: 1.25; color: #e0e8f3; }
+.critical-limit h3 { color: #d9b28d; }
+.critical-review ul { list-style: none; margin: calc(18px * var(--p)) 0 0; padding: 0; }
+.critical-review li { padding: calc(14px * var(--p)) 0; border-top: 1px solid var(--line); }
+.critical-review li:first-child { padding-top: 0; border-top: 0; }
+.critical-review li:last-child { padding-bottom: 0; }
+.critical-review h4 { font-family: 'Space Grotesk', sans-serif; font-size: calc(20px * var(--text-unit)); font-weight: 500; line-height: 1.25; color: #d2dfef; }
+.critical-review li p { margin-top: calc(8px * var(--p)); font-size: calc(18.5px * var(--text-unit)); line-height: 1.4; color: #bacbdf; }
+.critical-debate { display: flex; align-items: baseline; gap: calc(16px * var(--p)); margin-top: calc(22px * var(--p)); padding-top: calc(16px * var(--p)); border-top: 1px solid var(--line); font-size: calc(18.5px * var(--text-unit)); line-height: 1.4; color: #d3dfec; }
+.critical-debate > span { flex-shrink: 0; font-size: calc(13px * var(--text-unit)); text-transform: uppercase; letter-spacing: .07em; color: #c6a17d; }
+
+/* Composição de discussão disponível para outros roteiros. */
 .slide .discussion-layout { padding-top: 0; }
 .slide .discussion-layout .slide-title { font-size: calc(42px * var(--text-unit)); }
 .slide .discussion-question {

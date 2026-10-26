@@ -87,7 +87,7 @@ O painel de notas aparece na mesma tela da apresentação. Feche-o antes de proj
 8. Conteúdo teórico → conteúdo prático → criação dos jogos → absorção dos conceitos, separando atividades e observações dos autores — seções 4.3.1 a 4.5.
 9. Lições aprendidas, na ordem da seção 5: contexto, perguntas, liberdade orientada, infraestrutura, Scratch para iniciantes e conexão teoria/prática.
 10. Considerações finais dos autores — seção 6.
-11. Leitura crítica, relação com ADS e debate sobre aprendizagem individual.
+11. Leitura crítica: importância das oficinas, relação com ADS e limites da avaliação observacional pelos próprios aplicadores.
 12. Referência do artigo.
 
 O estudo ocorreu na educação básica. As conexões com ADS e a leitura crítica são propostas do seminário. Os resultados são observacionais, sem percentuais inventados de aprendizagem. A ilustração Scratch 2D é um exemplo didático, não um registro dos jogos dos estudantes. As referências teóricas são indiretas, via artigo-base.

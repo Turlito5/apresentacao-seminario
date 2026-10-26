@@ -377,21 +377,20 @@ export default function SlideContent({
 
   if (slide.kind === "critique")
     return (
-      <div>
+      <div className="critique-layout">
         {heading}
         {subheading}
-        <div className="critique-grid">
-          {slide.points.map((point) => (
-            <div key={point.title}>
-              <h3>{point.title}</h3>
-              <p>{point.text}</p>
-            </div>
+        <div className="critical-review" aria-label="Contribuições e limites do projeto">
+          {slide.columns?.map((column, index) => (
+            <section className={index === 0 ? "critical-positive" : "critical-limit"} key={column.title}>
+              <h3>{column.title}</h3>
+              <ul>{column.points.map((point) => (
+                <li key={point.title}><h4>{point.title}</h4><p>{point.text}</p></li>
+              ))}</ul>
+            </section>
           ))}
         </div>
-        <div className="group-reflection">
-          <span className="micro-label">NOSSA REFLEXÃO</span>
-          <p className="placeholder">[REFLEXÃO OU EXEMPLO DO GRUPO]</p>
-        </div>
+        {slide.takeaway && <p className="critical-debate"><span>Para debate</span>{slide.takeaway}</p>}
       </div>
     );
 

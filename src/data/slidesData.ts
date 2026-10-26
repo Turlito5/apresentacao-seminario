@@ -210,16 +210,25 @@ export const slidesData: readonly Slide[] = [
     notes: 'Felipe: apresente as seis ideias centrais da seção 6 do artigo. Os autores relatam resultados promissores no aprendizado de programação, aplicação dos conceitos nos jogos, exercício de habilidades cognitivas e criativas e boa acessibilidade do Scratch. Eles também defendem a replicabilidade da experiência e o compartilhamento dos desafios, estratégias e resultados como orientação para novos professores. O texto conclui pela viabilidade e eficácia da abordagem no contexto observado. Apresente isso como conclusão dos autores, sem transformar as observações em comprovação experimental ou afirmar que a experiência já foi replicada e validada em outras escolas. O relato envolveu 24 estudantes de uma escola pública. Na próxima tela, diferencie a leitura crítica do grupo e a relação pedagógica com ADS.',
   },
   {
-    id: 11, kind: 'discussion', chapter: 'Análise do grupo e discussão', articleSection: 'Análise do grupo · ADS e debate', menuTitle: 'Leitura crítica, ADS e debate',
-    title: 'Aprendizagem individual em debate',
-    subtitle: 'Como saber se os dois alunos compreenderam a lógica ao compartilhar um computador?',
-    points: [
-      { title: 'Alcance das evidências', text: 'Uma escola; sem comparação antes/depois ou avaliação de retenção.' },
-      { title: 'Conexão com ADS', text: 'Modelar regras, construir algoritmos e testar comportamentos.' },
+    id: 11, kind: 'critique', chapter: 'Análise do grupo e discussão', articleSection: 'Análise do grupo · Contribuições e limites', menuTitle: 'Leitura crítica do grupo',
+    title: 'Leitura crítica do grupo',
+    subtitle: 'Importância das oficinas e limites da avaliação.',
+    points: [],
+    columns: [
+      { title: 'Importância do projeto', points: [
+        { title: 'Inclusão digital', text: 'Primeiro contato com computadores e programação na escola pública.' },
+        { title: 'Prática criativa', text: 'Jogos articulam lógica, criatividade e resolução de problemas.' },
+        { title: 'Relação com ADS', text: 'Modelagem de regras, algoritmos e testes de comportamento.' },
+      ] },
+      { title: 'Limites da avaliação', points: [
+        { title: 'Método observacional', text: 'Atividades e jogos avaliados pelos próprios instrutores.' },
+        { title: 'Risco de viés', text: 'Percepções e expectativas dos aplicadores podem influenciar a avaliação.' },
+        { title: 'Ganho não quantificado', text: 'Faltam medidas comparáveis para estimar a aprendizagem com precisão.' },
+      ] },
     ],
-    takeaway: 'Uma possibilidade: cada aluno explicar e adaptar uma regra sem apoio do colega.',
-    source: 'Análise e atividade propostas para o grupo a partir de Genesio et al. (2023), seções 3 a 5.',
-    notes: 'Felipe: separe estas interpretações do grupo das conclusões dos autores apresentadas antes. O estudo se concentra em uma escola e usa observações; não apresenta comparação antes e depois, grupo de controle nem acompanhamento da retenção. Isso limita generalizações e afirmações causais. Como relação pedagógica com ADS, destaque decomposição das regras, implementação de condições e laços e verificação dos comportamentos. O artigo não avaliou estudantes de ADS nem a transferência para linguagens textuais. Conecte a pergunta ao compartilhamento dos computadores e à avaliação observacional. Aguarde as respostas antes de sugerir uma explicação individual do algoritmo, a alteração de uma regra ou uma tarefa curta de transferência. São propostas do grupo, não instrumentos avaliados no artigo. A existência de duplas por si só não implica ausência de aprendizagem individual.',
+    takeaway: 'Como medir a aprendizagem além da percepção dos aplicadores?',
+    source: 'Leitura crítica do grupo a partir de Genesio et al. (2023), seções 3–6.',
+    notes: 'Felipe: comece reconhecendo a importância social e pedagógica do projeto. As oficinas levaram computadores e programação a estudantes da escola pública sem experiência prévia, usando jogos para aproximar lógica, criatividade e prática. Para o grupo de ADS, isso permite relacionar regras, algoritmos e verificação de comportamentos; essa conexão é uma interpretação do seminário, pois o estudo foi realizado na educação básica. Apresente então o contraponto: os próprios aplicadores observaram os estudantes, as atividades e os jogos produzidos. Esses registros oferecem indícios qualitativos de aprendizagem. Porém, a percepção e as expectativas de quem conduz a experiência podem influenciar o julgamento de seus resultados. O relato não apresenta uma comparação padronizada antes/depois, avaliação independente ou medida de retenção que permita quantificar com precisão o ganho de aprendizagem e atribuí-lo às oficinas. Assim, o projeto é relevante e promissor, mas a avaliação descrita não permite medir seu sucesso com a mesma precisão de indicadores comparáveis. Encerre com a pergunta à turma. Como complemento, o grupo pode sugerir tarefas antes e depois com critérios explícitos e avaliação independente; são propostas do grupo, não procedimentos aplicados no artigo.',
   },
   {
     id: 12, kind: 'reference', menuTitle: 'Referência ABNT',

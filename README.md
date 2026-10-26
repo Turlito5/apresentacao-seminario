@@ -38,6 +38,7 @@ O build fica em `dist/`. O preview abre em http://127.0.0.1:4173. O projeto deve
 | `src/components/Presentation.tsx` | Navegação e transições |
 | `src/components/SlideContent.tsx` | Composição dos slides |
 | `src/components/ExpandedArticleContent.tsx` | Contexto da introdução, definições de PC, jogos, oficinas detalhadas, sequência das atividades e lições da seção 5 |
+| `src/components/LearningDiagrams.tsx` | Exemplo interativo do personagem e da bandeira, aplicado aos quatro pilares no slide 3 |
 | `src/components/AcademicDiagrams.tsx` | Jogos, metodologia, resultados e análise |
 | `src/data/articleCoverage.ts` | Comparativo da seção 2.3, dez conteúdos detalhados das oficinas e atividade sugerida ao grupo |
 | `src/components/ArticleDetails.tsx` | Trabalhos relacionados, exemplos e materiais de apoio |
@@ -56,7 +57,7 @@ O Vite atualiza a apresentação ao salvar os arquivos. A equipe está dividida 
 ## Controles
 
 - **← / →**, Page Up/Page Down: trocar slides.
-- **↑ / ↓** no slide 3: alternar o pilar destacado, sem clicar antes. As quatro definições continuam visíveis.
+- **↑ / ↓** no slide 3: alternar o pilar e o exemplo do personagem/bandeira, sem clicar antes. As quatro definições continuam visíveis.
 - **Home / End**: primeiro/último slide.
 - **F**: tela cheia.
 - **O**: visão geral.
@@ -84,6 +85,8 @@ O painel de notas aparece na mesma tela da apresentação. Feche-o antes de proj
 12. Referência do artigo.
 
 O estudo ocorreu na educação básica. As conexões com ADS e a leitura crítica são propostas do seminário. Os resultados são observacionais, sem percentuais inventados de aprendizagem. A ilustração Scratch 2D é um exemplo didático, não um registro dos jogos dos estudantes. As referências teóricas são indiretas, via artigo-base.
+
+Os textos visíveis usam frases curtas e palavras-chave, com densidade moderada. As definições, os três trabalhos relacionados, os dez conteúdos das oficinas, as quatro etapas do relato e as seis lições aprendidas permanecem na tela. As notas de fala preservam as explicações completas. Ícones e agrupamentos visuais ajudam a distinguir conceitos e etapas sem reduzir as fontes para acomodar texto.
 
 O mapa dos recortes está em [COBERTURA-DO-ARTIGO.md](COBERTURA-DO-ARTIGO.md). A base visual é a versão do GitHub, com as fontes ampliadas de forma discreta: 8% nos slides e 4% no slide 7. O fator `--slide-text-boost` em `src/styles.css` controla esse aumento. A revisão amplia os trechos visíveis dos slides 2, 3, 4, 7, 8 e 9; os demais mantêm o conteúdo anterior, incluindo os trabalhos relacionados e as seis considerações finais. Os exemplos detalhados de coleta e condição deram lugar aos argumentos e às etapas do artigo. O slide 9 acompanha as lições pedagógicas e estruturais da seção 5. A apresentação mantém o formato 16:9 e adapta todas as medidas ao espaço disponível. Use **F** para apresentar em tela cheia.
 

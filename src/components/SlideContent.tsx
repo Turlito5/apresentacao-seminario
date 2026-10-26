@@ -215,7 +215,7 @@ export default function SlideContent({
       <div>
         {heading}
         {subheading}
-        <ComputationalFoundation slide={slide} />
+        <ComputationalFoundation slide={slide} reducedMotion={reducedMotion} />
       </div>
     );
 

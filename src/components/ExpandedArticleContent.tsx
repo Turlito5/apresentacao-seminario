@@ -1,8 +1,8 @@
-import { useEffect, useRef, useState } from 'react';
-import { BookOpen, Monitor, Settings2 } from 'lucide-react';
+import { BookOpen, CheckCheck, Code2, Gamepad2, Monitor, Settings2 } from 'lucide-react';
 import { methodMetrics, type ExperienceStage, type Point, type Slide } from '../data/slidesData';
 import { detailedWorkshopTopics } from '../data/articleCoverage';
 import ScratchBlock2D from './ScratchBlock2D';
+import { ThinkingDiagram } from './LearningDiagrams';
 
 /** O contexto anterior à BNCC fica no próprio slide, na ordem do artigo. */
 export function IntroductionContext({ slide }: { slide: Slide }) {
@@ -15,7 +15,7 @@ export function IntroductionContext({ slide }: { slide: Slide }) {
       </li>)}
     </ol>
     <div className="intro-project">
-      {project && <section className="project-purpose"><h3>{project.title}</h3><p>{project.text}</p></section>}
+      {project && <section className="project-purpose"><h3>{project.title}</h3><p>{project.text}</p>{project.detail && <p className="project-audience">{project.detail}</p>}</section>}
       <section className="project-objective"><h3>Objetivo do artigo</h3><p>{slide.takeaway}</p></section>
       <p className="project-genre">Gênero: relato de experiência.</p>
       <ScratchBlock2D compact />
@@ -23,45 +23,21 @@ export function IntroductionContext({ slide }: { slide: Slide }) {
   </div>;
 }
 
-/** As definições dos autores e dos quatro pilares ficam visíveis ao mesmo tempo.
- * A seleção por teclado só destaca o pilar: não esconde conteúdo acadêmico. */
-export function ComputationalFoundation({ slide }: { slide: Slide }) {
-  const [active, setActive] = useState(0);
-  const pillarsRef = useRef<HTMLDivElement>(null);
-  useEffect(() => {
-    const onKey = (event: KeyboardEvent) => {
-      if (event.defaultPrevented || event.repeat || event.ctrlKey || event.metaKey || event.altKey ||
-          (event.target as HTMLElement).closest('input, textarea, select, [contenteditable]') ||
-          document.querySelector('dialog[open]')) return;
-      if (event.key !== 'ArrowDown' && event.key !== 'ArrowUp') return;
-      event.preventDefault();
-      const direction = event.key === 'ArrowDown' ? 1 : -1;
-      const next = (active + direction + slide.points.length) % slide.points.length;
-      setActive(next);
-      // O foco acompanha o destaque, evitando duas marcações visuais diferentes.
-      pillarsRef.current?.querySelectorAll<HTMLButtonElement>('button')[next]?.focus({ preventScroll: true });
-    };
-    window.addEventListener('keydown', onKey);
-    return () => window.removeEventListener('keydown', onKey);
-  }, [active, slide.points.length]);
-  return <div className="pc-foundation">
+/** Definições e quatro pilares continuam visíveis. O exemplo original responde
+ * a cliques e ↑/↓, com um único controlador de seleção no ThinkingDiagram. */
+export function ComputationalFoundation({ slide, reducedMotion }: { slide: Slide; reducedMotion: boolean }) {
+  return <div className="pc-foundation pc-foundation-with-example">
     <p className="foundation-scope"><span aria-hidden="true" />{slide.sectionIntro}</p>
-    <div className="pc-definitions">
-      {slide.context?.map(definition => <section key={definition.title}>
-        <h3>{definition.title}</h3><p>{definition.text}</p>
-        {definition.detail && <p className="pc-definition-detail">{definition.detail}</p>}
-      </section>)}
-    </div>
-    <div ref={pillarsRef} className="pc-pillars-expanded" role="group" aria-label="Os quatro pilares do pensamento computacional">
-      {slide.points.map((point, index) => <button key={point.title} type="button"
-        className={`pc-pillar-card ${active === index ? 'is-active' : ''}`}
-        aria-pressed={active === index} tabIndex={active === index ? 0 : -1} onClick={() => setActive(index)}>
-        <span className="pc-pillar-number" aria-hidden="true">{String(index + 1).padStart(2, '0')}</span>
-        <strong>{point.title}</strong><span className="pc-pillar-definition">{point.text}</span>
-      </button>)}
+    <div className="pc-example-layout">
+      <div className="pc-definitions">
+        {slide.context?.map(definition => <section key={definition.title}>
+          <h3>{definition.title}</h3><p>{definition.text}</p>
+          {definition.detail && <p className="pc-definition-detail">{definition.detail}</p>}
+        </section>)}
+      </div>
+      <ThinkingDiagram points={slide.points} reducedMotion={reducedMotion} />
     </div>
     <p className="pc-foundation-note">{slide.takeaway}</p>
-    <p className="sr-only" role="status" aria-live="polite">Pilar destacado: {slide.points[active]?.title}</p>
   </div>;
 }
 
@@ -69,15 +45,19 @@ export function ComputationalFoundation({ slide }: { slide: Slide }) {
 export function GamesLearningContent({ slide }: { slide: Slide }) {
   const icons = [BookOpen, Settings2, Monitor];
   return <div className="expanded-games">
+    <p className="content-group-label">Componentes do jogo</p>
     <div className="game-definitions-expanded">
       {slide.points.map((point, index) => { const Icon = icons[index] ?? Monitor;
         return <section key={point.title}><div className="definition-heading"><h3>{point.title}</h3><Icon aria-hidden="true" /></div><p>{point.text}</p></section>;
       })}
     </div>
-    <div className="games-pedagogy">
-      {slide.context?.map(point => <section key={point.title}><h3>{point.title}</h3><p>{point.text}</p></section>)}
-    </div>
-    <p className="game-genres-expanded">{slide.takeaway}</p>
+    <section className="games-pedagogy-group" aria-label="Função pedagógica dos jogos">
+      <p className="content-group-label">Por que usar na aprendizagem?</p>
+      <div className="games-pedagogy">
+        {slide.context?.map(point => <section key={point.title}><h3>{point.title}</h3><p>{point.text}</p></section>)}
+      </div>
+    </section>
+    <div className="game-genres-expanded"><span className="genres-label">Gêneros</span><ul>{slide.tags?.map(tag => <li key={tag}>{tag}</li>)}</ul></div>
   </div>;
 }
 
@@ -107,14 +87,15 @@ export function WorkshopCoverage({ slide }: { slide: Slide }) {
 /** Ordem explícita do relato: teoria → prática → criação → absorção.
  * Ações e observações são separadas, preservando a natureza observacional do estudo. */
 export function ExperienceSequence({ stages }: { stages: ExperienceStage[] }) {
+  const stageIcons = [BookOpen, Code2, Gamepad2, CheckCheck];
   return <table className="experience-sequence" aria-label="Atividades e resultados na ordem das seções 4.3.1 a 4.5">
     <caption className="sr-only">Sequência do relato de experiência, com atividades e observações dos autores.</caption>
     <colgroup><col className="experience-stage-column" /><col className="experience-activity-column" /><col className="experience-observation-column" /></colgroup>
     <thead><tr><th scope="col">Seção / etapa</th><th scope="col">O que foi desenvolvido</th><th scope="col">Observações dos autores</th></tr></thead>
-    <tbody>{stages.map(stage => <tr key={stage.section}>
-      <th scope="row"><span className="experience-section">{stage.section}</span><h3>{stage.title}</h3></th>
+    <tbody>{stages.map((stage, index) => { const Icon = stageIcons[index] ?? BookOpen; return <tr key={stage.section}>
+      <th scope="row"><span className="experience-stage-label"><Icon aria-hidden="true" /><span className="experience-section">{stage.section}</span></span><h3>{stage.title}</h3></th>
       <td>{stage.activity}</td><td>{stage.observation}</td>
-    </tr>)}</tbody>
+    </tr>; })}</tbody>
   </table>;
 }
 

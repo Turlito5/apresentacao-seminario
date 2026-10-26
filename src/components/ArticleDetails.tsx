@@ -22,8 +22,8 @@ export function GamesContext() {
 
 export function MaterialsSupport() {
   return <div className="materials-support">
-    <section><h3>Materiais e acompanhamento</h3><p>Slides, impressos, videoaulas e site para consultar e retomar conteúdos.</p></section>
-    <section><h3>Conteúdos de programação</h3><p>Sequências de instruções, condições e laços de repetição.</p></section>
+    <section><h3>Recursos de apoio</h3><p>Slides · impressos · videoaulas · site</p></section>
+    <section><h3>Conceitos trabalhados</h3><p>Sequências · condições · repetições</p></section>
   </div>;
 }
 

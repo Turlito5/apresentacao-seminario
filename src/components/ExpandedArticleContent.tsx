@@ -17,7 +17,7 @@ export function IntroductionContext({ slide }: { slide: Slide }) {
     <div className="intro-project">
       {project && <section className="project-purpose"><h3>{project.title}</h3><p>{project.text}</p>{project.detail && <p className="project-audience">{project.detail}</p>}</section>}
       <section className="project-objective"><h3>Objetivo do artigo</h3><p>{slide.takeaway}</p></section>
-      <p className="project-genre">Gênero: relato de experiência.</p>
+      <p className="project-genre">Relato de experiência.</p>
       <ScratchBlock2D compact />
     </div>
   </div>;
@@ -73,7 +73,7 @@ export function WorkshopCoverage({ slide }: { slide: Slide }) {
         {slide.points.map(point => <section key={point.title}><h3>{point.title}</h3><p>{point.text}</p></section>)}
       </aside>
       <section className="workshop-program" aria-label="Dez oficinas e conteúdos do Quadro 3">
-        <h3>Conteúdos das 10 oficinas · Quadro 3</h3>
+        <h3>10 oficinas · Quadro 3</h3>
         <ol>{detailedWorkshopTopics.map((topic, index) => <li key={topic.title}>
           <span className="workshop-program-number" aria-hidden="true">{index + 1}.</span>
           <div><h4>{topic.title}</h4><p>{topic.detail}</p></div>

@@ -27,13 +27,13 @@ export const discussionTasks = [
 // Detalhes do Quadro 3, mantidos na ordem das dez oficinas.
 export const detailedWorkshopTopics = [
   { title: 'Computador', detail: 'Componentes · comandos · Internet' },
-  { title: 'Sobre o projeto', detail: 'Questionário prévio · exemplos no Scratch' },
-  { title: 'Roteiro de jogos', detail: 'Enredo · roteiro · plano cartesiano' },
+  { title: 'Projeto', detail: 'Questionário prévio · Scratch' },
+  { title: 'Roteiro de jogos', detail: 'Enredo · plano cartesiano' },
   { title: 'Escrita do roteiro', detail: 'Personagens · interações · início/desfecho' },
-  { title: 'Lógica de programação', detail: 'Conceitos básicos no Scratch' },
-  { title: 'Ferramenta Scratch', detail: 'Blocos · sprites · cenários' },
-  { title: 'Programação no Scratch', detail: 'Sequências · condições · variáveis · eventos · AND/OR/NOT' },
-  { title: 'Loops e conectivos', detail: 'Sempre/repita · ações · obstáculos' },
-  { title: 'Sons — adaptada', detail: 'Sons · voz · interação; sem caixas' },
-  { title: 'Prática acompanhada', detail: 'Suporte · dificuldades' },
+  { title: 'Lógica', detail: 'Fundamentos de programação' },
+  { title: 'Scratch', detail: 'Blocos · sprites · cenários' },
+  { title: 'Programação', detail: 'Sequências · condições · variáveis · eventos · AND/OR/NOT' },
+  { title: 'Loops e conectivos', detail: 'Sempre/repita · obstáculos' },
+  { title: 'Sons (adaptada)', detail: 'Voz · interação; sem caixas' },
+  { title: 'Prática', detail: 'Suporte · dificuldades' },
 ] as const;

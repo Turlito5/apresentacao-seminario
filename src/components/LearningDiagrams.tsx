@@ -49,10 +49,10 @@ function Goal({ x, y }: { x: number; y: number }) {
 }
 
 const pillarHints = [
-  "Movimento, colisão e pontuação são problemas separados.",
-  "Um comando de movimento pode servir a vários personagens.",
-  "Para chegar à bandeira, considerar o trajeto e o objetivo.",
-  "Iniciar → repetir o movimento → verificar a chegada.",
+  "Separar movimento, colisão e pontuação.",
+  "Reutilizar movimentos entre personagens.",
+  "Considerar apenas trajeto e objetivo.",
+  "Iniciar → repetir movimentos → verificar chegada.",
 ];
 
 export function ThinkingDiagram({ points, reducedMotion }: DiagramProps) {

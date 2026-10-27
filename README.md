@@ -6,9 +6,9 @@ Projeto para Análise e Desenvolvimento de Sistemas, com conteúdo resumido do a
 
 ## Apresentação online
 
-Endereço do GitHub Pages: https://turlito5.github.io/apresentacao-seminario/
+Endereço desta versão sem controles: https://turlito5.github.io/apresentacao-seminario/sem-controles/
 
-A publicação usa GitHub Actions. Cada atualização enviada à branch `main` instala as dependências, verifica o TypeScript, gera o site e publica a pasta `dist`.
+A publicação conjunta usa o workflow da branch `main`, que gera a versão principal e as branches com e sem controles. Depois de enviar esta branch, execute esse workflow para atualizar `/sem-controles/` preservando as outras versões.
 
 ## Rodar localmente
 
@@ -35,6 +35,10 @@ O build fica em `dist/`. O preview abre em http://127.0.0.1:4173. O projeto deve
 | Arquivo | Conteúdo |
 | --- | --- |
 | `src/data/slidesData.ts` | Textos, notas, referências, equipe e dados do artigo |
+| `src/data/roteiro-artur.md` | Roteiro completo e revisado do Artur, fonte do painel R nos slides 5–8 |
+| `src/data/arturScript.ts` | Separação do roteiro por slide, falas, transições e orientações |
+| `src/components/ArturScriptContent.tsx` | Leitor com navegação entre os roteiros e rolagem independente |
+| `src/components/artur-script.css` | Tamanho do painel e legibilidade do roteiro |
 | `src/components/Presentation.tsx` | Navegação e transições |
 | `src/components/SlideContent.tsx` | Composição dos slides |
 | `src/components/ExpandedArticleContent.tsx` | Contexto da introdução, definições de PC, jogos, oficinas detalhadas, sequência das atividades e lições da seção 5 |
@@ -62,12 +66,13 @@ O Vite atualiza a apresentação ao salvar os arquivos. A equipe está dividida 
 - **F**: tela cheia.
 - **O**: visão geral.
 - **N**: notas de fala.
+- **R**, somente nos slides **5 a 8**: abrir ou fechar o roteiro completo do Artur correspondente ao slide. Dentro do leitor, os botões Slide 5–8 trocam o slide e o roteiro; ↑/↓, Page Up/Page Down ou o mouse rolam o texto. O conteúdo cabe na janela com rolagem, sem reduzir a fonte para tentar exibir tudo de uma vez.
 - **Esc**: fechar painel.
 - O rótulo de edição no cabeçalho, os controles inferiores e a barra de progresso foram removidos. Os atalhos continuam ativos.
 - A preferência de movimento reduzido do sistema operacional continua respeitada.
 - Slide 2: programa em Scratch com bandeira verde, repetição, movimento e mensagem; exemplo compacto para manter os comandos legíveis.
 
-O painel de notas aparece na mesma tela da apresentação. Feche-o antes de projetar.
+Os painéis N e R aparecem na janela em que foram abertos. Não são um modo de apresentador em segunda tela; feche-os na janela projetada. R e Esc fecham o roteiro, e o botão X também continua disponível.
 
 ## Estrutura acadêmica
 

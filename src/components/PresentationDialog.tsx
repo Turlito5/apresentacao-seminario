@@ -1,8 +1,10 @@
 import { useEffect, useRef } from 'react';
 import { X, ArrowUpRight } from 'lucide-react';
 import { slidesData, team } from '../data/slidesData';
+import { getArturScript } from '../data/arturScript';
+import ArturScriptContent from './ArturScriptContent';
 
-export type DialogMode = 'overview' | 'notes' | null;
+export type DialogMode = 'overview' | 'notes' | 'script' | null;
 
 export default function PresentationDialog({ mode, current, onClose, onSelect }: {
   mode: DialogMode; current: number; onClose: () => void; onSelect: (index: number) => void;
@@ -11,11 +13,17 @@ export default function PresentationDialog({ mode, current, onClose, onSelect }:
   useEffect(() => {
     if (mode && !ref.current?.open) ref.current?.showModal();
     if (!mode && ref.current?.open) ref.current.close();
-  }, [mode]);
+    if (mode === 'script') {
+      const reader = ref.current?.querySelector<HTMLElement>('[data-script-scroll]');
+      reader?.scrollTo({ top: 0 });
+      reader?.focus({ preventScroll: true });
+    }
+  }, [mode, current]);
   const slide = slidesData[current];
-  return <dialog ref={ref} className="presentation-dialog" onClose={onClose} onCancel={onClose} aria-labelledby="dialog-title">
-    <div className="dialog-heading"><div><span className="micro-label">LÓGICA EM JOGO</span><h2 id="dialog-title">{mode === 'notes' ? 'Notas de fala' : 'Todos os slides'}</h2></div><button className="icon-button" onClick={onClose} aria-label="Fechar painel"><X size={20} /></button></div>
-    {mode === 'notes' ? <div className="notes-content">
+  const script = getArturScript(slide.id);
+  return <dialog ref={ref} className={`presentation-dialog${mode === 'script' ? ' artur-script-dialog' : ''}`} onClose={onClose} onCancel={onClose} aria-labelledby="dialog-title">
+    <div className="dialog-heading"><div><span className="micro-label">LÓGICA EM JOGO</span><h2 id="dialog-title">{mode === 'script' ? 'Roteiro do Artur' : mode === 'notes' ? 'Notas de fala' : 'Todos os slides'}</h2></div><button className="icon-button" onClick={onClose} aria-label="Fechar painel"><X size={20} /></button></div>
+    {mode === 'script' ? (script && <ArturScriptContent script={script} onSelect={onSelect} />) : mode === 'notes' ? <div className="notes-content">
       <p className="notes-owner">{team[Math.floor(current / 4)].name} <span>Slide {current + 1} de 12</span></p>
       <h3>{slide.menuTitle}</h3><p className="notes-script">{slide.notes}</p>
       <p className="notes-source">{slide.source}</p>

@@ -2,6 +2,7 @@ import { useCallback, useEffect, useRef, useState, type CSSProperties } from 're
 import { AnimatePresence, motion, useReducedMotion, type MotionProps, type Variants } from 'framer-motion';
 import { Braces, Expand, Minimize } from 'lucide-react';
 import { slidesData } from '../data/slidesData';
+import { getArturScript } from '../data/arturScript';
 import { useStageScale } from '../hooks/useStageScale';
 import ParallaxBackground from './ParallaxBackground';
 import SlideContent from './SlideContent';
@@ -80,8 +81,17 @@ export default function Presentation() {
   useEffect(() => {
     const keydown = (event: KeyboardEvent) => {
       const target = event.target as HTMLElement;
-      if (event.defaultPrevented || event.repeat || event.ctrlKey || event.metaKey || event.altKey || dialog ||
+      if (event.defaultPrevented || event.repeat || event.ctrlKey || event.metaKey || event.altKey ||
           target.closest('input, textarea, select, [contenteditable], [data-no-slide-nav]')) return;
+      // R abre somente a fala do Artur (5–8); continua disponível para fechar
+      // quando o foco está no leitor, sem interferir em Ctrl+R ou nos outros painéis.
+      if ((event.key === 'r' || event.key === 'R') && getArturScript(index + 1)) {
+        if (dialog && dialog !== 'script') return;
+        event.preventDefault();
+        setDialog(dialog === 'script' ? null : 'script');
+        return;
+      }
+      if (dialog) return;
       switch (event.key) {
         case 'ArrowRight': case 'PageDown': event.preventDefault(); goTo(index + 1); break;
         case ' ': if (!target.closest('button, a')) { event.preventDefault(); goTo(index + 1); } break;
@@ -96,6 +106,10 @@ export default function Presentation() {
     window.addEventListener('keydown', keydown);
     return () => window.removeEventListener('keydown', keydown);
   }, [index, goTo, dialog, toggleFullscreen]);
+
+  useEffect(() => {
+    if (dialog === 'script' && !getArturScript(index + 1)) setDialog(null);
+  }, [dialog, index]);
 
   // Fade direcional curto: preserva o tamanho do texto durante a troca.
   // mode="wait" deixa o slide anterior sair antes de revelar o próximo.
